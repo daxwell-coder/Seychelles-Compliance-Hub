@@ -1,6 +1,8 @@
-@'
-# Dependencies
+﻿# Dependencies
 /node_modules
+
+# npm artifacts
+/npm
 
 # Build output (compiled TypeScript)
 /lib
@@ -19,4 +21,3 @@ yarn-error.log
 Thumbs.db
 .vscode/
 .idea/
-'@ | Set-Content -Path "c:\schv1\functions\.gitignore" -Encoding utf8
