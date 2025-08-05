@@ -1,0 +1,4 @@
+transactionId,amount,currency,description
+TRX-001,1500.00,USD,Consulting Fee
+TRX-002,250.50,EUR,Software Subscription
+TRX-003,75.00,GBP,Domain Registration

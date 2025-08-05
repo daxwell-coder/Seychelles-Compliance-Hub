@@ -1,0 +1,22 @@
+@'
+# Dependencies
+/node_modules
+
+# Build output (compiled TypeScript)
+/lib
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log
+
+# Environment variables
+.env
+.env.*.local
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+'@ | Set-Content -Path "c:\schv1\functions\.gitignore" -Encoding utf8

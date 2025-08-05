@@ -1,0 +1,18 @@
+# Set default behavior for all files to normalize line endings to LF.
+# This is the best practice for cross-platform projects.
+* text=auto eol=lf
+
+# These files should always have LF line endings
+*.js      text eol=lf
+*.ts      text eol=lf
+*.json    text eol=lf
+*.md      text eol=lf
+*.hcl     text eol=lf
+
+# These files are Windows-specific and should have CRLF line endings
+*.ps1     text eol=crlf
+
+# These are binary files and should be left alone
+*.png     binary
+*.jpg     binary
+
