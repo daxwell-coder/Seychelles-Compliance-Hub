@@ -31,4 +31,11 @@ variable "onboarding_api_key" {
   sensitive   = true
 }
 
+variable "metrics_api_key" {
+  description = "API key for protected metrics endpoint (leave blank to disable auth)."
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
 

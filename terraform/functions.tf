@@ -90,6 +90,14 @@ locals {
       timeout_seconds  = 60
       ingress_settings = "ALLOW_INTERNAL_ONLY"
     }
+    
+    metrics-endpoint = {
+      entry_point      = "metricsEndpoint"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 30
+      ingress_settings = "ALLOW_INTERNAL_ONLY" # keep internal by default
+    }
   }
 
   # Create a filtered map of only the functions that should be publicly accessible.
@@ -126,6 +134,7 @@ resource "google_cloudfunctions2_function" "all_functions" {
     environment_variables = {
       EVENT_TOPIC        = google_pubsub_topic.platform_events.name
       ONBOARDING_API_KEY = var.onboarding_api_key
+  METRICS_API_KEY    = var.metrics_api_key
     }
 
     # Define secret environment variables
