@@ -1,0 +1,173 @@
+{
+  "version": 3,
+  "registry_hash": "d230082947a707d23c21e3281953e829a453b812d6eac8c1778ab604d1b87d16",
+  "schemas": [
+    {
+      "type": "onboarding.completed",
+      "schema_id": "evt_onboarding_completed_v1",
+      "required_fields": [
+        "clientId",
+        "clientName",
+        "beneficialOwnerCount"
+      ],
+      "optional_fields": [
+        "clientRequestId",
+        "sanctionsStatus"
+      ],
+      "sensitive_fields": [
+        "clientName"
+      ],
+      "schema_hash": "990a2c6402902d5085e9139c48c0539d9d46faa5d40784b094afc5552628032e"
+    },
+    {
+      "type": "sanctions.screened",
+      "schema_id": "evt_sanctions_screened_v1",
+      "required_fields": [
+        "clientName",
+        "owners"
+      ],
+      "optional_fields": [],
+      "sensitive_fields": [
+        "clientName"
+      ],
+      "schema_hash": "a702266624acc45100d5a2dc6592cca0a50a1b800bca31808766ffc08036f817"
+    },
+    {
+      "type": "sanctions.flagged",
+      "schema_id": "evt_sanctions_flagged_v1",
+      "required_fields": [
+        "clientName"
+      ],
+      "optional_fields": [
+        "clientId"
+      ],
+      "sensitive_fields": [
+        "clientName"
+      ],
+      "schema_hash": "01e1a2f48795d1f5a6bcf9a1df43b6371effaede3180bbd35b5039880f20dd81"
+    },
+    {
+      "type": "transactions.file.received",
+      "schema_id": "evt_tx_file_received_v1",
+      "required_fields": [
+        "file",
+        "bucket"
+      ],
+      "optional_fields": [
+        "size"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "985ce83d466724ac8f34c87cafca34e604e4535aba4292877c45a904d5ae5a6e"
+    },
+    {
+      "type": "transactions.parsed",
+      "schema_id": "evt_tx_parsed_v1",
+      "required_fields": [
+        "file",
+        "records"
+      ],
+      "optional_fields": [],
+      "sensitive_fields": [],
+      "schema_hash": "877204b10c27669137bca2d026341ff746ba6ae303fac7f62caa4435d2577b3e"
+    },
+    {
+      "type": "transactions.stored",
+      "schema_id": "evt_tx_stored_v1",
+      "required_fields": [
+        "file",
+        "records"
+      ],
+      "optional_fields": [],
+      "sensitive_fields": [],
+      "schema_hash": "e261e026cacee03380ba797490e7b63b9aa5e96e10295b48f275f930952b7abe"
+    },
+    {
+      "type": "transactions.file.cleaned",
+      "schema_id": "evt_tx_file_cleaned_v1",
+      "required_fields": [
+        "file"
+      ],
+      "optional_fields": [],
+      "sensitive_fields": [],
+      "schema_hash": "2a554ba062cf2afc3a1fb90f894be39a7d3cc48ee43983e33e0d83ecc1637f00"
+    },
+    {
+      "type": "transactions.file.error",
+      "schema_id": "evt_tx_file_error_v1",
+      "required_fields": [
+        "file",
+        "message"
+      ],
+      "optional_fields": [],
+      "sensitive_fields": [],
+      "schema_hash": "24709cea856f45b8da0bc41104317ddcbdccf92209e6a95ef63cbc3fae3fe5bc"
+    },
+    {
+      "type": "regulatory.page_fetched",
+      "schema_id": "evt_reg_page_fetched_v1",
+      "required_fields": [
+        "url"
+      ],
+      "optional_fields": [
+        "status"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "8acef879d45c4cc7fca633dbd684c1281ea2e7d453fcfa18f1a6985bcdf92df3"
+    },
+    {
+      "type": "regulatory.diff_detected",
+      "schema_id": "evt_reg_diff_v1",
+      "required_fields": [
+        "url",
+        "hash_before",
+        "hash_after"
+      ],
+      "optional_fields": [
+        "snapshotId",
+        "impact_level"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "d093278904751bb9b6f3978b701e1f61da0870789811ae77e231993ec3f83822"
+    },
+    {
+      "type": "regulatory.fetch.error",
+      "schema_id": "evt_reg_fetch_error_v1",
+      "required_fields": [
+        "url",
+        "message"
+      ],
+      "optional_fields": [],
+      "sensitive_fields": [],
+      "schema_hash": "6a23399956c8e1b4f32ae8bac38b51eedc316b9443aab8aafa89ec6f4830f025"
+    },
+    {
+      "type": "regulatory.snapshot.stored",
+      "schema_id": "evt_reg_snapshot_stored_v1",
+      "required_fields": [
+        "snapshotId",
+        "url",
+        "hash"
+      ],
+      "optional_fields": [
+        "previousHash",
+        "length",
+        "truncated"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "5d6efd66d6851b2bdba1695c7ab4c16c0e91f8a6d5cd817f9573fbd634905bff"
+    },
+    {
+      "type": "audit.hash.chain.computed",
+      "schema_id": "evt_audit_hash_chain_computed_v1",
+      "required_fields": [
+        "newHash",
+        "previousHash"
+      ],
+      "optional_fields": [
+        "algorithm"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "19823a89f1fe6609480b7551294ed62793c64e74e0db974c8103cd993894ed4d"
+    }
+  ]
+}
