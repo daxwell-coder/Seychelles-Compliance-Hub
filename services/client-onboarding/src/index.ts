@@ -3,10 +3,29 @@ import { onRequest, HttpsError } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { OnboardingDataSchema, OnboardingData } from "./schemas";
 import * as logger from "firebase-functions/logger";
-import { emitEvent } from "./events"; // Refactored to shared-style emitter (local copy)
+// Inline event emitter (previously imported) to avoid transient module resolution issues in CI
+import { PubSub } from "@google-cloud/pubsub";
+import { randomUUID, createHash } from "crypto";
+// Import deterministic encryption utility
+import { encryptOnboardingData } from "./encryptionUtils";
 
 admin.initializeApp();
 const db = admin.firestore();
+
+// Simple inlined emitter (avoids separate module resolution issues in build environment)
+let _pubsub: PubSub | null = null;
+function getPubSub() { if (!_pubsub) _pubsub = new PubSub(); return _pubsub; }
+async function emitEvent(type: string, payload: Record<string, any> = {}) {
+  const topic = process.env.EVENT_TOPIC;
+  const canonical = JSON.stringify(sortKeys(payload));
+  const payload_hash = createHash('sha256').update(canonical).digest('hex');
+  // Fixed: Use snake_case emitted_at to match BigQuery schema
+  const enriched = { ...payload, type, emitted_at: new Date().toISOString(), event_id: randomUUID(), payload_hash };
+  if (!topic) { logger.warn("event.topic.missing", { type }); return; }
+  try { await getPubSub().topic(topic).publishMessage({ json: enriched }); logger.info("event.published", { type }); }
+  catch (err) { logger.error("event.publish.error", { type, err }); }
+}
+function sortKeys(obj: any): any { if (Array.isArray(obj)) return obj.map(sortKeys); if (obj && typeof obj === 'object') { return Object.keys(obj).sort().reduce((a: any,k)=>{a[k]=sortKeys(obj[k]);return a;},{});} return obj; }
 
 // Simple metrics helper (increment Firestore counter fields under _metrics/onboarding)
 const incMetric = async (field: string) => {
@@ -88,7 +107,7 @@ export const onboardClientFunction = onRequest(async (req, res) => {
   }
 
   // Accept either a callable-style envelope { data: {...} } or raw JSON body.
-  let raw: any = (req.body && typeof req.body === 'object') ? (req.body.data ?? req.body) : {};
+  const raw: any = (req.body && typeof req.body === 'object') ? (req.body.data ?? req.body) : {};
 
   // Backwards compatibility / user convenience: map companyName -> clientName if present.
   if (raw.companyName && !raw.clientName) raw.clientName = raw.companyName;
@@ -161,16 +180,24 @@ export const onboardClientFunction = onRequest(async (req, res) => {
   }
 
   // --- 4. Save Data to Firestore ---
+  // Apply PII encryption before storage
   // We will proceed to save the data regardless of the screening outcome,
   // but we will flag the client record accordingly. The compliance officer
   // can then review clients with a "MATCH_FOUND" status.
   try {
+    // Encrypt sensitive PII data before storage
+    const encryptedData = encryptOnboardingData(validatedData);
+    logger.info("Applied PII encryption to onboarding data", { 
+      executionId, 
+      encryptedFields: Object.keys(encryptedData).filter(k => k.includes('_encrypted')).length 
+    });
+
     const clientRef = db.collection("clients").doc();
     const batch = db.batch();
 
-    // Create the main client document
-    batch.set(clientRef, {
-      name: validatedData.clientName,
+    // Create the main client document with encrypted client name handling
+    const clientDoc: any = {
+      name: validatedData.clientName, // Keep original for internal processing
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       clientRequestId: validatedData.clientRequestId || null,
       onboardingStatus: "PENDING_REVIEW",
@@ -179,21 +206,67 @@ export const onboardClientFunction = onRequest(async (req, res) => {
         checkedAt: admin.firestore.FieldValue.serverTimestamp(),
         details: screeningResults, // Store detailed results for audit
       },
-    });
+    };
 
-    // Create documents for beneficial owners.
+    // Add client name search hash if available
+    if (encryptedData.clientName_searchHash) {
+      clientDoc.clientName_searchHash = encryptedData.clientName_searchHash;
+    }
+
+    batch.set(clientRef, clientDoc);
+
+    // Create documents for beneficial owners with encryption
     // Note: Firestore batches are limited to 500 operations. For simplicity,
     // we assume fewer than 499 BOs. A production system might need to
     // handle this by chunking writes into multiple batches.
-    if (validatedData.beneficialOwners.length < 499) {
-      validatedData.beneficialOwners.forEach((bo) => {
+    if (encryptedData.beneficialOwners.length < 499) {
+      encryptedData.beneficialOwners.forEach((bo: any) => {
         const boRef = clientRef.collection("beneficial_owners").doc();
-        batch.set(boRef, {
-          ...bo,
+        
+        // Prepare beneficial owner document with encrypted fields
+        const boDoc: any = {
+          // Store encrypted PII fields
+          fullName: bo.fullName,
+          residentialAddress: bo.residentialAddress,
+          serviceAddress: bo.serviceAddress,
+          nationalIdNumber: bo.nationalIdNumber,
+          taxIdNumber: bo.taxIdNumber,
+          
+          // Store search hashes for encrypted fields (if available)
+          fullName_searchHash: bo.fullName_searchHash,
+          residentialAddress_searchHash: bo.residentialAddress_searchHash,
+          serviceAddress_searchHash: bo.serviceAddress_searchHash,
+          nationalIdNumber_searchHash: bo.nationalIdNumber_searchHash,
+          taxIdNumber_searchHash: bo.taxIdNumber_searchHash,
+          
+          // Store encryption metadata
+          fullName_encrypted: bo.fullName_encrypted,
+          fullName_keyVersion: bo.fullName_keyVersion,
+          residentialAddress_encrypted: bo.residentialAddress_encrypted,
+          residentialAddress_keyVersion: bo.residentialAddress_keyVersion,
+          serviceAddress_encrypted: bo.serviceAddress_encrypted,
+          serviceAddress_keyVersion: bo.serviceAddress_keyVersion,
+          nationalIdNumber_encrypted: bo.nationalIdNumber_encrypted,
+          nationalIdNumber_keyVersion: bo.nationalIdNumber_keyVersion,
+          taxIdNumber_encrypted: bo.taxIdNumber_encrypted,
+          taxIdNumber_keyVersion: bo.taxIdNumber_keyVersion,
+          
+          // Non-PII fields (unencrypted)
+          nationality: bo.nationality,
+          ownershipPercentage: bo.ownershipPercentage,
+          
           // Convert string dates from the client to Firestore Timestamps
           dateOfBirth: admin.firestore.Timestamp.fromDate(new Date(bo.dateOfBirth)),
           dateBecameBo: admin.firestore.Timestamp.fromDate(new Date(bo.dateBecameBo)),
-        });
+        };
+
+        // Add date of birth encryption if it was encrypted
+        if (bo.dateOfBirth_encrypted) {
+          boDoc.dateOfBirth_encrypted = bo.dateOfBirth_encrypted;
+          boDoc.dateOfBirth_keyVersion = bo.dateOfBirth_keyVersion;
+        }
+
+        batch.set(boRef, boDoc);
       });
     } else {
       // Handle the case of too many BOs for a single batch. This would involve
@@ -202,15 +275,16 @@ export const onboardClientFunction = onRequest(async (req, res) => {
     }
 
     await batch.commit();
-    logger.info(`Successfully created client ${clientRef.id} and ${validatedData.beneficialOwners.length} beneficial owners.`, { executionId });
+    logger.info(`Successfully created client ${clientRef.id} and ${encryptedData.beneficialOwners.length} beneficial owners with PII encryption.`, { executionId });
 
     // Emit onboarding.completed event via shared-style emitter
     await emitEvent("onboarding.completed", {
       clientId: clientRef.id,
       clientName: validatedData.clientName,
-      beneficialOwnerCount: validatedData.beneficialOwners.length,
+      beneficialOwnerCount: encryptedData.beneficialOwners.length,
       clientRequestId: validatedData.clientRequestId || null,
       sanctionsStatus: overallScreeningStatus,
+      piiEncrypted: true, // Flag that PII encryption was applied
     });
 
   res.status(200).json({

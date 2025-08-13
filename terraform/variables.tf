@@ -38,4 +38,16 @@ variable "metrics_api_key" {
   sensitive   = true
 }
 
+variable "deployment_impersonation_service_account" {
+  description = "(Optional) Service account email to impersonate for Terraform operations (e.g. terraform-admin@PROJECT_ID.iam.gserviceaccount.com). If blank, ADC / key credentials are used."
+  type        = string
+  default     = ""
+}
+
+variable "terraform_admin_service_account" {
+  description = "(Optional) Service account email for Terraform administration to receive least-privilege roles (replaces temporary Owner)."
+  type        = string
+  default     = ""
+}
+
 

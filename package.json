@@ -2,19 +2,37 @@
   "name": "seychelles-hub",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts":  {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "schema:hash": "node scripts/computeSchemaHashes.js",
+    "lint": "eslint functions/src services/client-onboarding/src --ext .ts",
+    "lint:ci": "eslint functions/src services/client-onboarding/src --ext .ts --max-warnings=0",
+    "bq:schema:check": "node scripts/checkBigQuerySchema.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "firebase-admin": "^13.4.0",
     "next": "^15.4.5",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "tailwind-merge": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/react": "19.1.10",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.0",
+    "postcss": "^8.5.6",
+    "typescript": "~5.5.4"
   }
 }

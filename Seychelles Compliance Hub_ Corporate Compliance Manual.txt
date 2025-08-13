@@ -1,0 +1,236 @@
+﻿Seychelles Compliance Hub: Corporate Compliance Manual
+
+
+
+
+Introduction
+
+
+
+
+1. Purpose of This Manual
+
+
+This Compliance Manual (“the Manual”) establishes the core principles, policies, and procedures for the Seychelles Compliance Hub Project and its client entities, beginning with International Business Companies (IBCs). Its purpose is to ensure all operations adhere to the laws and regulations of Seychelles and meet international best practice standards. Compliance is the responsibility of every individual associated with the organization, from the board of directors to all employees and agents.
+This Manual serves as a practical guide to promote a culture of integrity, manage regulatory risk, and protect the reputation of our clients and of Seychelles as a premier international financial center.1
+
+
+2. Our Commitment: Tone from the Top
+
+
+The Seychelles Compliance Hub Project is unequivocally committed to the highest standards of legal and ethical conduct. The Board of Directors and Senior Management champion a culture where compliance is not merely a "tick-box" exercise but a fundamental component of our business strategy.3 We are dedicated to providing the necessary resources, training, and support to ensure this Manual is effectively implemented throughout the organization.4
+
+
+3. The Seychelles Regulatory Environment
+
+
+All activities are conducted under the purview of the Seychelles Financial Services Authority (FSA), the primary regulator for non-bank financial services.2 The FSA is responsible for licensing, supervising, and enforcing compliance for entities including IBCs, Fiduciary Service Providers, and Capital Market operators.1 We are committed to maintaining a transparent and cooperative relationship with the FSA and all other relevant regulatory bodies.7
+The primary legislation governing the entities covered by this manual includes:
+* The International Business Companies Act, 2016 (as amended) 8
+* The Anti-Money Laundering and Countering the Financing of Terrorism (AML/CFT) Act, 2020 (as amended) 9
+* The Beneficial Ownership Act, 2020 12
+* The Data Protection Act, 2023 13
+
+
+Part I: The Core Compliance Framework
+
+
+
+
+1.1 The Risk-Based Approach (RBA)
+
+
+The foundation of our compliance program is the Risk-Based Approach (RBA).15 This philosophy requires us to identify the most significant compliance risks our business faces and allocate our resources proportionately to mitigate them.17 This ensures that our efforts are targeted, effective, and move beyond a simple checklist mentality to a proactive, intelligence-led discipline.15
+Our RBA is a continuous cycle involving four key stages 17:
+1. Risk Identification: Systematically identifying all potential compliance risks associated with our clients, products, services, and jurisdictions of operation.19
+2. Risk Assessment: Analyzing and evaluating the likelihood and potential impact of each identified risk to create a clear risk profile, categorizing risks as high, medium, or low.19
+3. Risk Mitigation: Designing and implementing appropriate controls, policies, and procedures to manage and reduce the prioritized risks to a level consistent with our stated risk appetite.17
+4. Continuous Monitoring: Regularly testing the effectiveness of our controls and adapting them as the business and regulatory landscape evolves.17
+
+
+1.2 Governance and Accountability: The Three Lines of Defence
+
+
+To ensure robust oversight, we adhere to the "Three Lines of Defence" model of risk management 19:
+* First Line of Defence: Business Operations
+   * Business units and client-facing teams are the first line. They own and manage the risks inherent in their day-to-day activities and are responsible for implementing compliance procedures correctly.
+* Second Line of Defence: The Compliance Function
+   * The Compliance Function, led by the Compliance Officer, provides independent oversight and challenge to the first line. It is responsible for developing the compliance framework, providing expert advice, monitoring regulatory changes, and reporting to senior management and the board.4
+   * Independence: The Compliance Officer operates with independence from business lines and has a direct reporting line to the CEO and the Board of Directors to ensure that compliance issues are addressed without conflict of interest.4
+* Third Line of Defence: Internal Audit
+   * Internal Audit provides independent and objective assurance that the overall risk management and compliance framework is designed effectively and operating as intended.
+
+
+Part II: Core Compliance for International Business Companies (IBCs)
+
+
+
+
+2.1 Corporate Governance (International Business Companies Act, 2016)
+
+
+All Seychelles IBCs must strictly adhere to the corporate governance requirements set out in the IBC Act.
+* Directors' Duties: Directors have a fiduciary duty to act honestly, in good faith, and in the best interests of the company.8 This includes exercising the care, diligence, and skill that a reasonably prudent person would exercise in comparable circumstances.8
+* Statutory Registers: Every IBC must maintain the following registers at its registered office in Seychelles 8:
+   * A Register of Members (Shareholders).
+   * A Register of Directors.
+   * A Register of Charges.
+* Accounting Records: This is a critical compliance requirement.
+   * All IBCs must keep reliable accounting records that are sufficient to show and explain the company's transactions.20
+   * These records must be kept in Seychelles at the company's registered office. This can be done by submitting the records (which can be originals or electronic copies) on a bi-annual basis.20
+   * Records for the period of January to June must be submitted by July of that year.
+   * Records for the period of July to December must be submitted by January of the following year.
+   * All accounting records must be preserved for a minimum of seven years.20
+* Annual Fees and Good Standing: All IBCs must pay the annual government license fee to the FSA to remain in good standing.22 Failure to do so can result in the company being struck off the Register and subsequently dissolved.20
+
+
+2.2 Data Protection and Confidentiality (Data Protection Act, 2023)
+
+
+We are committed to protecting personal data in accordance with the Data Protection Act, 2023.13 While Seychelles law protects the confidentiality of IBC ownership, this does not override the legal obligation to process personal data lawfully and securely.
+* Data Protection Principles: All personal data of clients, beneficial owners, directors, and employees will be processed according to the following principles 13:
+   * Lawfulness, Fairness, and Transparency: Processed lawfully, with consent where required.24
+   * Purpose Limitation: Held only for specified and lawful purposes.
+   * Data Minimisation: Adequate, relevant, and not excessive.
+   * Accuracy: Accurate and kept up to date.
+   * Storage Limitation: Not kept for longer than is necessary.
+   * Integrity and Confidentiality: Protected by appropriate security measures.
+* Data Security: We will implement and maintain appropriate technical and organizational security measures to protect personal data against unauthorized access, alteration, disclosure, or destruction.13
+* Data Breach Notification: In the event of a data breach, the Information Commission will be notified in accordance with the Act's requirements.14
+* International Transfers: Personal data will only be transferred outside of Seychelles if the recipient jurisdiction provides a comparable level of data protection, or under other conditions permitted by the Act.13
+
+
+Part III: Financial Crime Prevention Framework
+
+
+
+
+3.1 Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) Policy
+
+
+It is our absolute policy to prevent the use of our services for money laundering, terrorist financing, or any other financial crime. This policy is based on the Seychelles AML/CFT Act, 2020, and is aligned with the global standards set by the Financial Action Task Force (FATF).9 The Compliance Officer is responsible for the oversight of this policy.
+
+
+3.2 Customer Due Diligence (CDD) / Know Your Customer (KYC)
+
+
+A robust CDD program is the cornerstone of our AML/CFT framework.27 We must have a reasonable belief that we know the true identity of our customers and understand the nature of their business.
+Our CDD process is based on four pillars 27:
+1. Customer Identification and Verification: We must identify every customer and verify their identity using reliable, independent source documents, data, or information.
+2. Beneficial Ownership Identification and Verification: For all legal entity customers (including IBCs), we must identify and take reasonable measures to verify the identity of the Ultimate Beneficial Owners (UBOs), in line with the Beneficial Ownership Act, 2020.12
+3. Understanding the Nature and Purpose of the Relationship: We must gather sufficient information to understand the customer's business, ownership structure, and the anticipated nature and purpose of the business relationship to develop a customer risk profile.27
+4. Ongoing Monitoring: We must conduct ongoing, risk-based monitoring of the business relationship and transactions to identify and report suspicious activity and to keep customer information up to date.27
+The intensity of our CDD will be tiered according to risk: Simplified Due Diligence (SDD) for low-risk clients, Standard Due Diligence (CDD) for most clients, and Enhanced Due Diligence (EDD) for high-risk clients (e.g., Politically Exposed Persons (PEPs), clients in high-risk industries or jurisdictions).18
+
+
+3.3 Sanctions Compliance
+
+
+We are committed to complying with all applicable international sanctions regimes, including those issued by the United Nations, European Union, and other relevant bodies.30
+* Procedure: All customers, beneficial owners, and relevant transaction counterparties will be screened against applicable sanctions lists at onboarding and on an ongoing basis.18
+* Action on Match: If a confirmed match to a sanctions list is found, we will immediately freeze any relevant assets and report the match to the Compliance Officer, who will then notify the appropriate Seychelles authorities.32 No business will be conducted with sanctioned parties.
+
+
+3.4 Anti-Bribery and Corruption (ABC)
+
+
+We have a zero-tolerance policy towards bribery and corruption. We are committed to acting professionally, fairly, and with integrity in all our business dealings. This policy is aligned with the principles of international legislation such as the U.S. Foreign Corrupt Practices Act (FCPA) and the UK Bribery Act.33
+* Prohibition: No employee or agent may offer, promise, give, request, or accept a bribe (which includes any payment, gift, or anything of value) to gain a business advantage.33
+* Gifts and Hospitality: The giving or receiving of gifts and hospitality must be reasonable, proportionate, and transparent. All such expenses must be properly recorded.
+* Third Parties: Thorough due diligence must be conducted on all third-party agents, introducers, or consultants before engagement to ensure they share our commitment to anti-corruption.34
+
+
+3.5 Identifying and Reporting Suspicious Activity
+
+
+All employees must be vigilant in identifying and reporting suspicious activity.
+* Red Flags: A red flag is a potential indicator of financial crime. While not proof, it warrants further scrutiny.35 Examples relevant to IBCs include:
+   * An overly complex corporate structure with no clear economic or legal purpose.
+   * Reluctance to provide required CDD information, particularly on beneficial ownership.36
+   * Transactions that are inconsistent with the client's stated business activities.36
+   * Fund flows to or from high-risk jurisdictions with no logical business connection.36
+   * Use of shell companies to obscure ownership.38
+* Internal Reporting: Any employee who identifies a red flag or otherwise suspects financial crime must immediately report their suspicion to the Compliance Officer.
+* External Reporting: The Compliance Officer is responsible for investigating internal reports. If a suspicion is substantiated, the Compliance Officer will file a Suspicious Transaction Report (STR) with the Seychelles Financial Intelligence Unit (FIU).9
+
+
+Part IV: Operational Compliance
+
+
+
+
+4.1 Training and Awareness
+
+
+A strong compliance culture is built on awareness and education.39
+* Mandatory Training: All directors and relevant employees must complete compliance training upon joining the organization and attend annual refresher courses.19
+* Training Content: Training will cover this Manual and key risk areas, including AML/CFT, Sanctions, Data Protection, and Anti-Bribery and Corruption. Training will be tailored to specific job roles.39
+* Record Keeping: The Compliance Officer will maintain records of all training provided and attendance.
+
+
+4.2 Monitoring and Assurance
+
+
+The Compliance Officer will conduct regular monitoring to ensure the policies and procedures in this Manual are being followed effectively.17 This may include periodic file reviews, control testing, and transaction analysis. The compliance program will also be subject to periodic independent review by Internal or External Audit.7
+
+
+4.3 Handling Compliance Breaches and Investigations
+
+
+Any potential breach of this Manual or applicable regulations will be taken seriously and investigated promptly.
+* Internal Investigations: Investigations will be conducted in a fair, objective, and timely manner.41 The process will generally involve:
+   1. Preparation: Scoping the investigation and preserving evidence.
+   2. Fact-Finding: Gathering and reviewing documents and conducting interviews.
+   3. Reporting: Documenting the findings and conclusions.
+   4. Corrective Action: Implementing remedial measures to address any failings and prevent recurrence.41
+* Whistleblowing: We encourage the reporting of any compliance concerns in good faith, without fear of retaliation. All such reports will be treated confidentially and investigated thoroughly.43
+
+
+4.4 Manual Review and Updates
+
+
+The regulatory environment is dynamic. This Manual will be reviewed and updated by the Compliance Officer at least annually, or more frequently if there are significant changes to laws, regulations, or our business operations.19 Any updates will be approved by the Board of Directors and communicated to all relevant personnel.
+Works cited
+1. Regulatory Enforcements - Seychelles Financial Services Authority (FSA), accessed August 5, 2025, https://fsaseychelles.sc/enforcement/regulatory-enforcements
+2. Who we are - Financial Services Authority Seychelles, accessed August 5, 2025, https://fsaseychelles.sc/about/who-we-are
+3. The Basics of Conduct Risk - MyComplianceOffice, accessed August 3, 2025, https://mco.mycomplianceoffice.com/blog/3-things-about-conduct-risk
+4. IGCA Certificate in Compliance - Syllabus | AGRC, accessed August 3, 2025, https://agrc.org/wp-content/uploads/2021/11/Syllabus-for-Compliance-IGCA-Certificate.pdf
+5. Seychelles Financial Services Authority - Wikipedia, accessed August 5, 2025, https://en.wikipedia.org/wiki/Seychelles_Financial_Services_Authority
+6. Financial Regulation FSA Seychelles: its Brokers, accessed August 5, 2025, https://smartbrokersolutions.com/fsa-seychelles-regulation/
+7. Key Responsibilities of a Compliance Analyst | Redstone Search, accessed August 3, 2025, https://redstonesearch.com/key-responsibilities-of-a-compliance-analyst/
+8. Corporate Governance Rules for Seychelles IBC - OVZA, accessed August 5, 2025, https://ovza.com/corporate-governance-rules-for-seychelles-ibc/
+9. AML/CTF compliance in Seychelles - Arctic Intelligence, accessed August 5, 2025, https://arctic-intelligence.com/countries/compliance-seychelles
+10. AML-CFT - Financial Services Authority Seychelles, accessed August 5, 2025, https://fsaseychelles.sc/aml-cft/amlcft
+11. AML/CFT Legislation - Seychelles Financial Intelligence Unit, accessed August 5, 2025, https://seychellesfiu.sc/aml-cft-legislation/
+12. Anti-Money Laundering and Countering the Financing of Terrorism - Seychelles Nation, accessed August 5, 2025, https://www.nation.sc/articles/5923/anti-money-laundering-and-countering-the-financing-of-terrorism
+13. Data protection laws in Seychelles - Data Protection Laws of the World, accessed August 5, 2025, https://www.dlapiperdataprotection.com/index.html?t=law&c=SC
+14. Seychelles: Overview of the Data Protection Act, 2023 | Opinion - DataGuidance, accessed August 5, 2025, https://www.dataguidance.com/opinion/seychelles-overview-data-protection-act-2023
+15. Unraveling What a Risk-Based Approach Means — GAN Integrity blog, accessed August 3, 2025, https://www.ganintegrity.com/resources/blog/what-a-risk-based-approach-means/
+16. What is a risk-based approach | International Bar Association, accessed August 3, 2025, https://www.ibanet.org/Oct-21-risk-based-approach
+17. Why a Risk-Based Approach is Essential for Compliance Management, accessed August 3, 2025, https://www.standardfusion.com/blog/risk-based-approach-to-compliance-management
+18. Risk-based Approach (RBA) – Managing AML & KYC Risk In 2025, accessed August 3, 2025, https://www.neotas.com/risk-based-approach-rba/
+19. Risk-Based Approach Best Practices Guide 2025 - Bynn, accessed August 3, 2025, https://www.bynn.com/resources/risk-based-approach-best-practices-guide-2025
+20. Seychelles: Amendments to the International Business Companies (IBCs) and Foundations acts - Quijano & Associates, accessed August 5, 2025, https://quijano.com/seychelles-amendments-to-the-international-business-companies-ibcs-and-foundations-acts/
+21. Seychelles International Business Company (IBC): A Go-to Guide | BBCIncorp Offshore, accessed August 5, 2025, https://bbcincorp.com/offshore/articles/seychelles-international-business-companies
+22. Seychelles International Business Company (IBC): Overview, accessed August 5, 2025, https://global.acclime.com/guides/seychelles-international-business-company/
+23. global.acclime.com, accessed August 5, 2025, https://global.acclime.com/guides/seychelles-international-business-company/#:~:text=to%2048%20hours.-,Compliance%20requirements,is%20not%20subject%20to%20taxation.
+24. Data Protection Act, 2023 (Act 24 of 2023) • Page 16 • CYRILLA: Global Digital Rights Law, accessed August 5, 2025, https://cyrilla.org/entity/54gqz5hgnnb?page=16&file=17222563512470s4w4wxj1cl.pdf
+25. Seychelles: Data Protection Act enters into force | News - DataGuidance, accessed August 5, 2025, https://www.dataguidance.com/news/seychelles-data-protection-act-enters-force
+26. AML/CFT - Central Bank Of Seychelles, accessed August 5, 2025, https://www.cbs.sc/AMLCFT/AMLCFT.html
+27. Customer Due Diligence — Overview - NCUA, accessed August 3, 2025, https://ncua.gov/regulation-supervision/letters-credit-unions-other-guidance/customer-due-diligence-overview-0
+28. CDD Final Rule | FinCEN.gov, accessed August 3, 2025, https://www.fincen.gov/resources/statutes-and-regulations/cdd-final-rule
+29. Four requirements of customer due diligence (CDD) for banks - Moody's, accessed August 3, 2025, https://www.moodys.com/web/en/us/kyc/resources/insights/four-requirements-cdd-for-banks.html
+30. International sanctions - Ministerio de Asuntos Exteriores, Unión Europea y Cooperación, accessed August 3, 2025, https://www.exteriores.gob.es/en/PoliticaExterior/Paginas/SancionesInternacionales.aspx
+31. Sanctions FAQs | Global law firm - Norton Rose Fulbright, accessed August 3, 2025, https://www.nortonrosefulbright.com/en/knowledge/publications/9106cdb9/sanctions-faqs
+32. International Sanctions (Restrictive Measures) | Siseministeerium, accessed August 3, 2025, https://www.siseministeerium.ee/en/activities/international-cooperation/international-sanctions
+33. U.S. Foreign Corrupt Practices Act - International Trade Administration, accessed August 3, 2025, https://www.trade.gov/us-foreign-corrupt-practices-act
+34. Anti-Bribery Laws | International Toolkit - Yale University, accessed August 3, 2025, https://world-toolkit.yale.edu/regulated-activity/anti-bribery-laws
+35. BSA/AML Manual - Appendices - Appendix F – Money Laundering and Terrorist Financing Red Flags, accessed August 3, 2025, https://bsaaml.ffiec.gov/manual/Appendices/07
+36. AML Red Flags - Federal Lawyer, accessed August 3, 2025, https://federal-lawyer.com/securities-litigation/aml-red-flags/
+37. Red Flags for Fraud and Money Laundering - Merchant Risk Council, accessed August 3, 2025, https://merchantriskcouncil.org/learning/resource-center/member-news/blog/2023/red-flags-for-fraud-and-money-laundering
+38. What is financial regulation and why does it matter | Central Bank of ..., accessed August 3, 2025, https://www.centralbank.ie/consumer-hub/explainers/what-is-financial-regulation-and-why-does-it-matter
+39. Master Financial Services Compliance Training with L&D | OnCourse Learning, accessed August 3, 2025, https://www.oncourselearning.com/resources/master-financial-services-compliance-training
+40. 8 Steps to Ensuring Regulatory Compliance - Penneo, accessed August 3, 2025, https://penneo.com/blog/8-steps-ensuring-regulatory-compliance/
+41. GUIDE TO INTERNAL INVESTIGATIONS: THE INVESTIGATOR'S ..., accessed August 3, 2025, https://www.legal500.com/doing-business-in/guide-to-internal-investigations-the-investigators-playbook/
+42. Guide to Conducting an Effective Internal Investigation - Association of Corporate Counsel, accessed August 3, 2025, https://www.acc.com/sites/default/files/resources/vl/membersonly/ProgramMaterial/19856_1.pdf
+43. What Is Conduct Risk In Banking Today? (And How To Manage It ..., accessed August 3, 2025, https://blog.complylog.com/risk/conduct-risk-in-banking

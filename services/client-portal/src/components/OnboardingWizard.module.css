@@ -1,0 +1,18 @@
+.wizardContainer {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.boContainer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.errorText {
+  color: red;
+  margin-top: 15px;
+}

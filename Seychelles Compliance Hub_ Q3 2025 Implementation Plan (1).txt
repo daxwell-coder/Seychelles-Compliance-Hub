@@ -1,0 +1,65 @@
+﻿Seychelles Compliance Hub: Q3 2025 Implementation Plan
+Period: August 4, 2025 – September 30, 2025
+Version: 1.6 (Developer Discretion & Tool Agnostic)
+Status: Accelerated Execution Plan
+1.0 Primary Objectives for Q3 2025
+This quarter is foundational. The successful execution of these objectives is critical to launching our Phase 1 services on schedule in Q4. Based on the approved Business Plan (v3.0) and existing assets, our primary goals are:
+1. Codify & Secure Existing Infrastructure: To bring the current Google Cloud and Firebase setup under a formal Infrastructure as Code (IaC) regime using Terraform, ensuring a repeatable, auditable, and secure foundation.
+2. Decide & Build the eKYC Backend: To empower the Lead Developer to determine the optimal architecture for workflow orchestration and then build and integrate the chosen backend solution with the existing frontend.
+3. Develop a Regulatory Change Monitoring Prototype: To build and prove the technical capability to automatically scrape key regulatory websites (FSA, FIU) for changes and generate internal alerts.
+2.0 Key Roles & Responsibilities
+* Project Lead (Founder): Overall project management, vendor negotiation (sanctions list provider), budget oversight, and ensuring alignment with the business plan.
+* Lead Developer: Responsible for all technical execution, including architectural decisions, enhancing the codebase, writing Terraform scripts, and building the required workflows using the best tool for the job.
+* Compliance Officer (Consultant/Part-Time initially): Provides regulatory input on the eKYC workflow, reviews data handling processes, and identifies key regulatory sources to be monitored.
+2.1 Verifiable Tasks Achieved & Existing Assets
+The developer will build upon the following completed work and assets. These tasks do not need to be repeated.
+* Domain Registration: The domain seychellescompliancehub.com has been purchased.
+* Initial Hosting Setup: A Firebase project has been created and is hosting the live preview website.
+* Frontend UI/UX Foundation: A responsive website has been developed (https://xkvmetzk.manus.space/#) using a modern stack (assumed React/Vite, Tailwind CSS, shadcn/ui).
+* Initial GCP Project: A Google Cloud Project is linked to the Firebase project.
+* Source Code Repository: An existing Git repository for the frontend website is assumed to be available.
+3.0 Detailed Execution Plan (Revised for August Start)
+Month 1: August 2025 – Infrastructure Codification & Architectural Decision
+Focus: Formalizing the existing setup and making the core architectural decision for the backend.
+Week
+	Key Tasks & Milestones (Project View)
+	Lead
+	Lead Developer - Key Technical Tasks (Developer View)
+	Deliverable(s)
+	Week 5 <br> (Aug 4-10)
+	Accelerated Onboarding & Infrastructure Audit: <br> • Onboard Lead Developer. <br> • Grant developer access to GCP, Firebase, and the Git repository. <br> • Audit & Begin Terraform: Analyze the existing GCP/Firebase setup and begin writing Terraform scripts to match the configuration.
+	Project Lead, Lead Developer
+	• Set up local dev environment & clone existing GitHub repo. <br> • Review current GCP/Firebase configuration. <br> • Write and commit main.tf, iam.tf, network.tf, and storage.tf scripts to codify the existing setup. <br> • Review sanctions vendor APIs.
+	• Developer fully onboarded. <br> • Initial Terraform files matching the existing infrastructure committed.
+	Week 6-7 <br> (Aug 11-24)
+	Complete Terraform & Architectural R&D: <br> • Complete Terraform scripts for all required Phase 1 services. <br> • NEW: Architectural Spike: Developer to research and decide on the best workflow orchestration tool. <br> • Formalize CI/CD: Enhance the existing deployment process into a formal CI/CD pipeline for the production domain.
+	Lead Developer
+	• Write firebase.tf, cloudrun.tf, and functions.tf scripts. <br> • NEW: Conduct a 2-3 day "spike": <br> 1. Build a simple PoC with n8n. <br> 2. Sketch the equivalent PoC with custom Cloud Functions. <br> 3. Investigate Google Cloud Workflows as a native alternative. <br> • Update/create the github-actions.yml file to automate frontend deployment.
+	• Complete and version-controlled Terraform codebase. <br> • NEW: A documented architectural decision paper (1-2 pages) recommending the path forward and the reasoning. <br> • A formal CI/CD pipeline.
+	Week 8-9 <br> (Aug 25 - Sep 7)
+	Enhance Frontend for Backend Integration: <br> • Refactor the existing UI components to handle dynamic states. <br> • Implement client-side logic for Firebase Authentication. <br> • Connect the upload component to the chosen backend endpoint (e.g., a webhook or a direct Cloud Function call).
+	Lead Developer
+	• Review the existing React component tree. <br> • Integrate the Firebase Auth SDK into the login/registration pages and implement state management for user sessions. <br> • Based on the architectural decision, connect the upload component to the appropriate trigger endpoint.
+	• A functional website where a user can create an account and log in. <br> • A document upload that successfully triggers the chosen backend workflow.
+	Month 2: September 2025 – Backend Development & Prototyping
+Focus: Building the "brains" of the platform using the chosen architecture and prototyping the dynamic monitoring engine.
+Week
+	Key Tasks & Milestones (Project View)
+	Lead
+	Lead Developer - Key Technical Tasks (Developer View)
+	Deliverable(s)
+	Week 10-11 <br> (Sep 8-21)
+	Develop Core eKYC Backend Workflow: <br> • Build the end-to-end workflow using the decided tool. <br> • Integrate AI APIs: Call Document AI and Vision AI. <br> • Implement logic to parse JSON responses and write results to Firestore.
+	Lead Developer
+	• Path A (n8n): Build the visual workflow in the n8n canvas, configuring nodes for AI APIs and Firestore. <br> • Path B (Cloud Functions): Write the Node.js orchestration logic, install SDKs, and implement robust error handling and unit tests.
+	• A complete backend workflow that processes an uploaded ID and writes structured JSON data to Firestore.
+	Week 12 <br> (Sep 22-28)
+	Data Consolidation & Vendor Finalization: <br> • Enhance the backend workflow to consolidate data into BigQuery. <br> • Sign Contract: Finalize and sign the agreement with the selected sanctions list data provider. <br> Regulatory Monitoring R&D: <br> • Research and prototype a web scraping solution.
+	Lead Developer, Project Lead
+	• Add the final step to the workflow (either an n8n node or code in the Cloud Function) to stream the final data into BigQuery. <br> • NEW: Write a separate Cloud Function, triggered by Cloud Scheduler, that uses Puppeteer to scrape the FSA "Publications" page. Implement logic to hash the page content and compare it to the previous day's hash. If the hash is different, send an email alert.
+	• A complete data flow from upload to BigQuery. <br> • Signed vendor contract. <br> • A working prototype of a regulatory change detector that sends an email alert.
+	Week 13 <br> (Sep 29-30)
+	End-to-End Testing & Q3 Review: <br> • Perform a full, end-to-end test of the eKYC workflow on the live website. <br> • Prepare a live demo of the eKYC backend and the regulatory monitoring alert system. <br> • Finalize Q3 progress report and create a detailed plan for Q4.
+	All
+	• Create and execute a test plan for the full user journey on seychellescompliancehub.com. <br> • Record a screen capture of the successful test flow, showing the chosen backend system executing in real-time. <br> • Create a technical backlog in GitHub issues for all Q4 tasks.
+	• A successful end-to-end demo video. <br> • Q3 progress report. <br> • Detailed Q4 execution plan.

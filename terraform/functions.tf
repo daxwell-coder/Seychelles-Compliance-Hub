@@ -27,6 +27,56 @@ resource "google_pubsub_subscription" "platform_events_debug" {
   message_retention_duration = "604800s" # 7 days retention for debugging
   retain_acked_messages = false
 }
+
+# BigQuery dataset for raw event ledger (Phase 1 ingestion foundation)
+resource "google_bigquery_dataset" "event_ledger" {
+  dataset_id = "event_ledger"
+  project    = var.project_id
+  location   = var.location
+  description = "Raw immutable ledger of platform events (append-only)."
+  delete_contents_on_destroy = true
+}
+
+# BigQuery table schema kept minimal; payload stored JSON string for flexibility.
+resource "google_bigquery_table" "event_log" {
+  dataset_id = google_bigquery_dataset.event_ledger.dataset_id
+  project    = var.project_id
+  table_id   = "event_log"
+  deletion_protection = false
+  schema = jsonencode([
+    { name = "event_id", type = "STRING", mode = "REQUIRED", description = "Deterministic or UUID event id" },
+    { name = "type", type = "STRING", mode = "REQUIRED", description = "Event type" },
+    { name = "emitted_at", type = "TIMESTAMP", mode = "REQUIRED", description = "Original emission timestamp" },
+    { name = "ingested_at", type = "TIMESTAMP", mode = "REQUIRED", description = "Ingestion timestamp" },
+    { name = "schema_id", type = "STRING", mode = "NULLABLE", description = "Schema identifier if known" },
+    { name = "schema_version", type = "STRING", mode = "NULLABLE", description = "Parsed schema version (e.g. v1)" },
+    { name = "payload_hash", type = "STRING", mode = "REQUIRED", description = "SHA256 hash of canonical payload" },
+    { name = "payload", type = "STRING", mode = "REQUIRED", description = "Raw JSON payload (escaped)" },
+    { name = "source_topic", type = "STRING", mode = "NULLABLE", description = "Origin Pub/Sub topic" }
+  ])
+  time_partitioning {
+    type = "DAY"
+    field = "emitted_at"
+  }
+  clustering = ["type", "event_id"]
+}
+
+# View providing deduplicated event stream (first ingestion per event_id)
+resource "google_bigquery_table" "event_log_deduped_view" {
+  dataset_id = google_bigquery_dataset.event_ledger.dataset_id
+  project    = var.project_id
+  table_id   = "event_log_deduped"
+  deletion_protection = false
+  view {
+    query = <<EOT
+SELECT * EXCEPT(rn) FROM (
+  SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY ingested_at ASC) rn
+  FROM `${var.project_id}.${google_bigquery_dataset.event_ledger.dataset_id}.event_log`
+) WHERE rn = 1
+EOT
+    use_legacy_sql = false
+  }
+}
 # Step 1: Package the legacy Cloud Functions source code into a zip archive.
 data "archive_file" "functions_source" {
   type        = "zip"
@@ -96,7 +146,176 @@ locals {
       source_archive   = google_storage_bucket_object.functions_source_archive.name
       available_memory = "128Mi"
       timeout_seconds  = 30
-      ingress_settings = "ALLOW_INTERNAL_ONLY" # keep internal by default
+      ingress_settings = "ALLOW_ALL" # Exposed publicly; protected by METRICS_API_KEY
+    }
+
+    events-ingestor = {
+      entry_point      = "eventsIngestor"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "256Mi"
+      timeout_seconds  = 60
+      event_trigger = {
+        event_type   = "google.cloud.pubsub.topic.v1.messagePublished"
+        pubsub_topic = google_pubsub_topic.platform_events.id
+      }
+    }
+    obligations-load = {
+      entry_point      = "loadObligations"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    obligations-list = {
+      entry_point      = "listObligations"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    obligations-snapshot = {
+      entry_point      = "obligationSnapshot"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    obligations-snapshot-trigger = {
+      entry_point      = "obligationSnapshotPubSub"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      event_trigger = {
+        event_type   = "google.cloud.pubsub.topic.v1.messagePublished"
+        pubsub_topic = google_pubsub_topic.obligations_snapshot_topic.id
+      }
+    }
+    obligations-snapshot-verify = {
+      entry_point      = "obligationSnapshotVerify"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    obligations-snapshot-verify-daily = {
+      entry_point      = "obligationSnapshotVerifyDaily"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+      # onSchedule functions in v2 are deployed as event-driven (Scheduler-managed internal) but no explicit event_trigger block needed
+    }
+    regulatory-classifier = {
+      entry_point      = "ingestRegulatoryChange"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "256Mi"
+      timeout_seconds  = 120
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    task-engine = {
+      entry_point      = "taskHandler"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "256Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    task-escalate = {
+      entry_point      = "escalateTask"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    task-close = {
+      entry_point      = "closeTask"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    critical-task-monitor = {
+      entry_point      = "monitorCriticalTasks"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 120
+      # Scheduled function - no ingress_settings needed
+    }
+    critical-task-summary = {
+      entry_point      = "getCriticalTaskSummary"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      # Scheduled function - no ingress_settings needed
+    }
+    
+    # Task #4: External Anchoring Functions
+    process-chain-for-anchoring = {
+      entry_point      = "processChainForAnchoring"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "256Mi"
+      timeout_seconds  = 120
+      event_trigger = {
+        event_type   = "google.cloud.pubsub.topic.v1.messagePublished"
+        pubsub_topic = google_pubsub_topic.platform_events.id
+      }
+    }
+    weekly-anchor-publisher = {
+      entry_point      = "weeklyAnchorPublisher"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 300
+      # Scheduled function - no ingress_settings needed
+    }
+    publish-anchor-manual = {
+      entry_point      = "publishAnchorManual"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 300
+      ingress_settings = "ALLOW_INTERNAL_ONLY"
+    }
+    verify-anchor = {
+      entry_point      = "verifyAnchor"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_ALL" # Public verification endpoint
+    }
+    anchor-status = {
+      entry_point      = "anchorStatus"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 30
+      ingress_settings = "ALLOW_ALL" # Public status endpoint
+    }
+    
+    # Task #3: Encrypted Data Search Functions
+    search-encrypted-data = {
+      entry_point      = "searchEncryptedData"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "256Mi"
+      timeout_seconds  = 60
+      ingress_settings = "ALLOW_INTERNAL_ONLY" # Internal search API
+    }
+    search-health-check = {
+      entry_point      = "searchHealthCheck"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "128Mi"
+      timeout_seconds  = 30
+      ingress_settings = "ALLOW_ALL" # Public health check
+    }
+    
+    # Sprint 2: Semantic Regulatory Classification with ML
+    semantic-classify-regulatory = {
+      entry_point      = "semanticClassifyRegulatory"
+      source_archive   = google_storage_bucket_object.functions_source_archive.name
+      available_memory = "512Mi" # Increased for ML processing
+      timeout_seconds  = 180     # Increased for semantic analysis
+      ingress_settings = "ALLOW_ALL" # External regulatory ingestion
+      environment_variables = {
+        ENABLE_SEMANTIC_ANALYSIS = "true"
+        ML_CONFIDENCE_THRESHOLD  = "0.6"
+        TASK_CREATION_THRESHOLD  = "0.7"
+      }
     }
   }
 
@@ -104,6 +323,14 @@ locals {
   public_functions = {
     for k, v in local.functions : k => v if try(v.ingress_settings, "") == "ALLOW_ALL"
   }
+
+  # Explicit list of event-triggered functions (static to avoid unknown references in for_each evaluation)
+  event_triggered_function_names = [
+    "regulatory-monitor",
+    "events-ingestor",
+    "obligations-snapshot-trigger",
+    "process-chain-for-anchoring"
+  ]
 }
 
 # Step 5: Create all functions using a single resource block with for_each.
@@ -171,7 +398,8 @@ resource "google_cloudfunctions2_function" "all_functions" {
     google_project_service.eventarc,
     # Ensure secret exists before function that uses it is created.
   google_secret_manager_secret.sanctions_api_key,
-  google_pubsub_topic.platform_events
+  google_pubsub_topic.platform_events,
+  google_bigquery_table.event_log
   ]
 }
 
@@ -188,7 +416,7 @@ resource "google_cloud_run_service_iam_member" "public_invokers" {
 
 # Grant Eventarc permission to invoke event-driven functions.
 resource "google_cloud_run_service_iam_member" "eventarc_invokers" {
-  for_each = { for k, v in local.functions : k => v if try(v.event_trigger, null) != null }
+  for_each = toset(local.event_triggered_function_names)
 
   location = google_cloudfunctions2_function.all_functions[each.key].location
   project  = google_cloudfunctions2_function.all_functions[each.key].project

@@ -117,7 +117,20 @@ export const processTransactionFile = async (event: StorageEvent) => {
 // Export the regulatory monitor function from its own file
 // 7. Removed the duplicate declaration of checkRegulatoryChanges
 export * from "./regulatoryMonitor";
+export * from "./regulatoryMonitoringDashboard";
+export * from "./autoTaskCreator";
+export * from "./taskSLAMonitor";
 export * from "./auditHashChain";
+export * from "./eventsIngestor";
+export * from "./obligationsService";
+export * from "./obligationsSnapshot";
+export * from "./regulatoryClassifier";
+export * from "./semanticClassifier";
+export * from "./taskEngine";
+export * from "./criticalTaskMonitor";
+export * from "./searchService";
+export * from "./externalAnchor";
+export * from "./narrativeScoring";
 
 // Secure metrics endpoint (internal use). Requires METRICS_API_KEY if set.
 export const metricsEndpoint = onRequest(async (req, res) => {

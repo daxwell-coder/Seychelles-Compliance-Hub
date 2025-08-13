@@ -1,0 +1,289 @@
+/* Victoria Seychelles Background - Inspired by Seychelles Compliance Hub */
+
+/* Main hero section with Victoria Seychelles background */
+.hero-section {
+  background-image: 
+    linear-gradient(
+      135deg, 
+      rgba(59, 130, 246, 0.8) 0%,     /* Blue overlay start */
+      rgba(147, 197, 253, 0.6) 25%,   /* Light blue */
+      rgba(255, 165, 0, 0.4) 50%,     /* Orange transition */
+      rgba(255, 140, 0, 0.6) 75%,     /* Orange */
+      rgba(255, 69, 0, 0.7) 100%      /* Orange-red end */
+    ),
+    url('./victoria_seychelles_hero_background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Alternative gradient option - more like the original site */
+.hero-section-original-style {
+  background-image: 
+    linear-gradient(
+      to right, 
+      rgba(30, 58, 138, 0.9) 0%,      /* Dark blue start */
+      rgba(59, 130, 246, 0.7) 30%,    /* Blue */
+      rgba(147, 197, 253, 0.5) 50%,   /* Light blue */
+      rgba(251, 146, 60, 0.6) 70%,    /* Orange */
+      rgba(234, 88, 12, 0.8) 100%     /* Dark orange end */
+    ),
+    url('./victoria_seychelles_hero_background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle version with less intense overlay */
+.hero-section-subtle {
+  background-image: 
+    linear-gradient(
+      135deg, 
+      rgba(59, 130, 246, 0.4) 0%,     /* Light blue overlay */
+      rgba(147, 197, 253, 0.3) 30%,   /* Very light blue */
+      rgba(255, 255, 255, 0.1) 50%,   /* Almost transparent */
+      rgba(251, 146, 60, 0.3) 70%,    /* Light orange */
+      rgba(234, 88, 12, 0.4) 100%     /* Orange end */
+    ),
+    url('./victoria_seychelles_hero_background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  .hero-section,
+  .hero-section-original-style,
+  .hero-section-subtle {
+    background-attachment: scroll; /* Fixed attachment can cause issues on mobile */
+    min-height: 100vh;
+  }
+}
+
+/* Content overlay styling for better text readability */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(135deg, #ffffff, #e0f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content .subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #fbbf24;
+  font-weight: 600;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  line-height: 1.6;
+}
+
+/* Modern button styling inspired by the original site */
+.hero-content .cta-button {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  padding: 1.25rem 2.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  margin: 0.5rem;
+}
+
+.hero-content .cta-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+}
+
+.hero-content .cta-button-secondary {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: white;
+  padding: 1.25rem 2.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+  margin: 0.5rem;
+}
+
+.hero-content .cta-button-secondary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(249, 115, 22, 0.4);
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+}
+
+/* Status card styling similar to the original */
+.status-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.status-card h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.status-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.75rem;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.status-item::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.stats-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.stats-label {
+  color: #e0f2fe;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Additional overlay for better contrast if needed */
+.hero-section::before,
+.hero-section-original-style::before,
+.hero-section-subtle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1); /* Very subtle dark overlay for better text contrast */
+  z-index: 1;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content .subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .hero-content .cta-button,
+  .hero-content .cta-button-secondary {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .status-card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .hero-content {
+    padding: 1rem;
+  }
+  
+  .hero-content .cta-button,
+  .hero-content .cta-button-secondary {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    display: block;
+    margin: 0.5rem auto;
+    max-width: 250px;
+  }
+}
+

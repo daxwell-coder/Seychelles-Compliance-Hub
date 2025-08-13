@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "registry_hash": "d230082947a707d23c21e3281953e829a453b812d6eac8c1778ab604d1b87d16",
+  "version": 4,
+  "registry_hash": "be2a920fc33acf09b35fabf7a0f2658750f529f95c85a086b31c751e727e6e5a",
   "schemas": [
     {
       "type": "onboarding.completed",
@@ -168,6 +168,130 @@
       ],
       "sensitive_fields": [],
       "schema_hash": "19823a89f1fe6609480b7551294ed62793c64e74e0db974c8103cd993894ed4d"
+    },
+    {
+      "type": "obligation.schema.updated",
+      "schema_id": "evt_obligation_schema_updated_v1",
+      "required_fields": [
+        "obligationId",
+        "version",
+        "status"
+      ],
+      "optional_fields": [
+        "appliesTo",
+        "frequency",
+        "slaDays"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "22a5cf993a93bbc8b3e0d95a62a19386c6524a6385623376aef6c756425faddb"
+    },
+    {
+      "type": "audit.hash.chain.invalid",
+      "schema_id": "evt_audit_hash_chain_invalid_v1",
+      "required_fields": [
+        "checked",
+        "detectedAt"
+      ],
+      "optional_fields": [
+        "reason"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "325c4994f4d2b8cf3ee5e81f30a4f5e53f2c5397e04356aff36b9eed59db6547"
+    },
+    {
+      "type": "regulatory.change.ingested",
+      "schema_id": "evt_reg_change_ingested_v1",
+      "required_fields": [
+        "changeId",
+        "sourceUrl",
+        "jurisdiction",
+        "contentHash"
+      ],
+      "optional_fields": [
+        "extractedLength",
+        "truncated"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "42aba0279057ea360e22e6979ee04be3bb0cbc8cc6fa172f357140ef5bc15d3a"
+    },
+    {
+      "type": "regulatory.impact.assessed",
+      "schema_id": "evt_reg_impact_assessed_v1",
+      "required_fields": [
+        "changeId",
+        "impactLevel",
+        "impactedObligations",
+        "classifierVersion"
+      ],
+      "optional_fields": [
+        "rationaleRefs",
+        "unmatchedKeywords",
+        "durationMs"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "cffa2429b42869451074a40e548155f0af71dac9cd15ea9686e36bafe04610b5"
+    },
+    {
+      "type": "task.created",
+      "schema_id": "evt_task_created_v1",
+      "required_fields": [
+        "taskId",
+        "title",
+        "status",
+        "originType"
+      ],
+      "optional_fields": [
+        "originId",
+        "impactLevel",
+        "owner",
+        "correlationId"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "7451e03f7febfe74a9a7d546ebb03c41c19b669deef809bc8a349d8f8a4fd172"
+    },
+    {
+      "type": "task.status.changed",
+      "schema_id": "evt_task_status_changed_v1",
+      "required_fields": [
+        "taskId",
+        "fromStatus",
+        "toStatus"
+      ],
+      "optional_fields": [
+        "owner",
+        "correlationId"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "2457f5faaa737ba74c02926eb7db01411db9c037ed348c4b122cb0290dddf198"
+    },
+    {
+      "type": "task.escalated",
+      "schema_id": "evt_task_escalated_v1",
+      "required_fields": [
+        "taskId",
+        "escalationLevel",
+        "reason"
+      ],
+      "optional_fields": [
+        "owner",
+        "correlationId"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "61d872143fc94c23a3d4fa427ea0924e508d6d745b2b36fa3f7b7c3b99f47f10"
+    },
+    {
+      "type": "task.closed",
+      "schema_id": "evt_task_closed_v1",
+      "required_fields": [
+        "taskId",
+        "resolution"
+      ],
+      "optional_fields": [
+        "owner",
+        "correlationId"
+      ],
+      "sensitive_fields": [],
+      "schema_hash": "6533a612f17d45a6c3419c53581900035fbc8909982642f8583cbc35563db920"
     }
   ]
 }

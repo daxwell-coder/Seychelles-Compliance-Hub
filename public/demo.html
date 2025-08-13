@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real Data Demo - Seychelles Compliance Hub</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        .demo-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .step { margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .warning { background: #fff3cd; color: #856404; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .results { margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; font-family: monospace; }
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .mock-data { background: #fff3cd; padding: 15px; border-radius: 8px; }
+        .real-data { background: #d4edda; padding: 15px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Seychelles Compliance Hub - Real vs Mock Data Demo</h1>
+        
+        <div class="demo-section info">
+            <h2>📊 Understanding Your Data Architecture</h2>
+            <p>Your platform currently uses a hybrid approach:</p>
+            <ul>
+                <li><strong>Real Infrastructure</strong>: Firestore database, Google Cloud Functions, encryption services</li>
+                <li><strong>Mock Data</strong>: Some demo figures for UI completeness while building</li>
+                <li><strong>Real Data</strong>: Generated when you actually use the system</li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎭 Step 1: Current Dashboard (Before Real Data)</h2>
+            <button onclick="showCurrentDashboard()">Check Current Dashboard Data</button>
+            <div id="current-results" class="results" style="display: none;"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🏢 Step 2: Create Real IBC Registration</h2>
+            <p>Let's create a real IBC registration that will generate actual Firestore records:</p>
+            <button onclick="createRealIBC()">Register "Victoria Test Trading Ltd"</button>
+            <div id="registration-results" class="results" style="display: none;"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📈 Step 3: Dashboard After Real Data</h2>
+            <button onclick="showUpdatedDashboard()">Check Updated Dashboard</button>
+            <div id="updated-results" class="results" style="display: none;"></div>
+        </div>
+
+        <div class="comparison">
+            <div class="mock-data">
+                <h3>🎭 Mock Data Example</h3>
+                <pre>totalClients: 247 (demo number)
+complianceScore: 94.2% (calculated)
+revenue: $125,400 (placeholder)</pre>
+            </div>
+            <div class="real-data">
+                <h3>✅ Real Data Example</h3>
+                <pre>totalClients: 1 (actual Firestore record)
+complianceScore: 50% (1 active / 2 total)  
+revenue: $500 (1 client × $500)</pre>
+            </div>
+        </div>
+
+        <div class="demo-section success">
+            <h2>💡 Key Insight</h2>
+            <p>Once you start using the system for real business:</p>
+            <ul>
+                <li>Client registrations create real Firestore records</li>
+                <li>Dashboard shows actual business metrics</li>
+                <li>Revenue calculations reflect real registrations</li>
+                <li>Compliance scores are calculated from actual data</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function showCurrentDashboard() {
+            const button = event.target;
+            const resultsDiv = document.getElementById('current-results');
+            
+            button.textContent = 'Loading...';
+            button.disabled = true;
+            
+            try {
+                const response = await fetch('/api/dashboard-fixed');
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <h4>Current Dashboard Data:</h4>
+                    <pre>${JSON.stringify({
+                        totalClients: data.data.clientStats.totalClients,
+                        activeRegistrations: data.data.clientStats.activeRegistrations,
+                        complianceScore: data.data.complianceMetrics.complianceScore,
+                        revenue: data.data.performance.monthlyRevenue,
+                        dataSource: data.data.dataSource || 'hybrid',
+                        isRealTime: data.data.dataIntegrity?.isRealTime || false
+                    }, null, 2)}</pre>
+                `;
+                resultsDiv.style.display = 'block';
+                
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: red;">Error loading dashboard: ' + error.message + '</p>';
+                resultsDiv.style.display = 'block';
+            }
+            
+            button.textContent = 'Check Current Dashboard Data';
+            button.disabled = false;
+        }
+
+        async function createRealIBC() {
+            const button = event.target;
+            const resultsDiv = document.getElementById('registration-results');
+            
+            button.textContent = 'Creating Registration...';
+            button.disabled = true;
+            
+            try {
+                const response = await fetch('/api/onboard-client-fixed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        companyName: 'Victoria Test Trading Ltd',
+                        incorporatorName: 'John Smith',
+                        incorporatorEmail: 'john.smith@example.com',
+                        businessActivity: 'International trading and investment services',
+                        authorizedCapital: '10000 USD',
+                        incorporatorAddress: '123 Victoria Street, Mahe, Seychelles',
+                        incorporatorPhone: '+248 123 4567',
+                        incorporatorNationality: 'British'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultsDiv.innerHTML = `
+                        <h4>✅ Real IBC Created Successfully!</h4>
+                        <pre>${JSON.stringify({
+                            registrationNumber: data.data.registrationNumber,
+                            clientId: data.data.clientId,
+                            status: data.data.status,
+                            tasksCreated: data.data.tasksCreated,
+                            estimatedCompletion: data.data.estimatedCompletion
+                        }, null, 2)}</pre>
+                        <p><strong>This created REAL records in Firestore:</strong></p>
+                        <ul>
+                            <li>✅ Client record in 'clients' collection</li>
+                            <li>✅ Compliance tasks in 'tasks' collection</li>
+                            <li>✅ Audit events in 'events' collection</li>
+                        </ul>
+                    `;
+                } else {
+                    resultsDiv.innerHTML = '<p style="color: red;">Registration failed: ' + data.message + '</p>';
+                }
+                
+                resultsDiv.style.display = 'block';
+                
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: red;">Error creating registration: ' + error.message + '</p>';
+                resultsDiv.style.display = 'block';
+            }
+            
+            button.textContent = 'Register "Victoria Test Trading Ltd"';
+            button.disabled = false;
+        }
+
+        async function showUpdatedDashboard() {
+            const button = event.target;
+            const resultsDiv = document.getElementById('updated-results');
+            
+            button.textContent = 'Loading Updated Data...';
+            button.disabled = true;
+            
+            try {
+                const response = await fetch('/api/dashboard-fixed');
+                const data = await response.json();
+                
+                resultsDiv.innerHTML = `
+                    <h4>📈 Updated Dashboard (Real Data):</h4>
+                    <pre>${JSON.stringify({
+                        totalClients: data.data.clientStats.totalClients,
+                        activeRegistrations: data.data.clientStats.activeRegistrations,
+                        complianceScore: data.data.complianceMetrics.complianceScore + '%',
+                        revenue: data.data.performance.monthlyRevenue,
+                        databaseRecords: data.data.systemHealth.databaseRecords,
+                        dataSource: data.data.dataSource || 'hybrid',
+                        isRealTime: data.data.dataIntegrity?.isRealTime || false,
+                        lastSync: data.data.dataIntegrity?.lastSync
+                    }, null, 2)}</pre>
+                    <p><strong>🎉 Now showing REAL data from your Firestore database!</strong></p>
+                `;
+                resultsDiv.style.display = 'block';
+                
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: red;">Error loading updated dashboard: ' + error.message + '</p>';
+                resultsDiv.style.display = 'block';
+            }
+            
+            button.textContent = 'Check Updated Dashboard';
+            button.disabled = false;
+        }
+    </script>
+</body>
+</html>

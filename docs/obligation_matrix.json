@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "jurisdiction": "SC",
+  "last_updated": "2025-08-10T00:00:00Z",
+  "obligations": [
+    {
+      "id": "bo.register.maintenance",
+      "title": "Maintain Register of Beneficial Owners",
+      "applies_to": ["IBC"],
+      "source_refs": ["BO Act 2020"],
+      "frequency": "event-driven",
+      "trigger_events": ["ownership_change", "control_change"],
+      "sla_days": 14,
+      "data_schema_ref": "schema:bo_owner_v1",
+      "status": "active"
+    },
+    {
+      "id": "bo.database.update",
+      "title": "Update Central BO Database",
+      "applies_to": ["ResidentAgent"],
+      "source_refs": ["BO Act 2020"],
+      "frequency": "event-driven",
+      "trigger_events": ["new_ubo", "ubo_ceases"],
+      "sla_days": 14,
+      "data_schema_ref": "schema:bo_submission_v1",
+      "status": "active"
+    },
+    {
+      "id": "accounting.biannual.records",
+      "title": "Submit Bi-Annual Accounting Records",
+      "applies_to": ["IBC"],
+      "source_refs": ["IBC Act 2016"],
+      "frequency": "semi-annual",
+      "periods": ["Jan-Jun", "Jul-Dec"],
+      "due_offsets_days": [30, 30],
+      "data_schema_ref": "schema:accounting_packet_v1",
+      "status": "active"
+    },
+    {
+      "id": "aml.str.submission",
+      "title": "File Suspicious Transaction Report",
+      "applies_to": ["ReportingEntity"],
+      "source_refs": ["AML/CFT Act 2020"],
+      "frequency": "event-driven",
+      "trigger_events": ["suspicion_formed"],
+      "sla_days": 2,
+      "data_schema_ref": "schema:str_report_v1",
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "table": "event_ledger.event_log",
+  "required_columns": [
+    {"name": "event_id", "type": "STRING"},
+    {"name": "type", "type": "STRING"},
+    {"name": "emitted_at", "type": "TIMESTAMP"},
+    {"name": "ingested_at", "type": "TIMESTAMP"},
+    {"name": "schema_id", "type": "STRING"},
+    {"name": "schema_version", "type": "STRING"},
+    {"name": "payload_hash", "type": "STRING"},
+    {"name": "payload", "type": "STRING"},
+    {"name": "source_topic", "type": "STRING"}
+  ],
+  "envelope_format": {
+    "version": 2,
+    "required_fields": [
+      {"name": "envelope.producer", "type": "string"},
+      {"name": "envelope.correlation_id", "type": "string"},
+      {"name": "envelope.tenant_id", "type": "string|null"},
+      {"name": "envelope.user_id", "type": "string|null"},
+      {"name": "envelope.session_id", "type": "string|null"},
+      {"name": "envelope.trace_id", "type": "string|null"},
+      {"name": "envelope.emitted_at", "type": "string"},
+      {"name": "type", "type": "string"},
+      {"name": "occurred_at", "type": "string"},
+      {"name": "event_id", "type": "string"},
+      {"name": "payload_hash", "type": "string"},
+      {"name": "payload", "type": "object"}
+    ],
+    "compatibility": {
+      "legacy_fields": ["emittedAt"],
+      "migration_status": "automatic"
+    }
+  }
+}

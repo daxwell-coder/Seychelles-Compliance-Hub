@@ -1,0 +1,421 @@
+﻿Seychelles FIU Compliance Framework: A Technical and Legal Analysis of Beneficial Ownership and STR Reporting
+
+
+
+
+Part I: The Regulatory Landscape for Financial Compliance in Seychelles
+
+
+The financial compliance environment in Seychelles is defined by a modern, robust, and dynamic legal framework, largely established in 2020. This framework is the direct result of a concerted national effort to align with global standards for combating financial crime. Understanding its origins and structure is essential for any entity operating within or interacting with the Seychelles financial system.
+
+
+A. Core Legislative Framework: The 2020 Overhaul and Subsequent Amendments
+
+
+The cornerstones of Seychelles' current Anti-Money Laundering and Countering the Financing of Terrorism (AML/CFT) regime are the AML/CFT Act, 2020, and the Beneficial Ownership (BO) Act, 2020.1 Both pieces of legislation came into force on August 28, 2020, marking a comprehensive overhaul of the country's previous legal structure.1
+This legislative transformation was not arbitrary; it was a direct and necessary response to deficiencies identified in the 2017-2018 Mutual Evaluation Report (MER) conducted by the Financial Action Task Force (FATF) and the Eastern and Southern Africa Anti-Money Laundering Group (ESAAMLG).3 The MER highlighted significant gaps in Seychelles' compliance with international standards, placing the jurisdiction under an "Enhanced Follow-up Process".4 The 2020 Acts were therefore designed with the primary objective of addressing these identified shortcomings and demonstrating a firm commitment to the FATF Recommendations.
+This principal legislation is supported by other critical statutes, including the Prevention of Terrorism Act, 2004 (POTA), the Financial Institutions Act, 2004, and the new Virtual Asset Service Providers (VASP) Act, 2024, which significantly expands the scope of entities subject to AML/CFT obligations.5
+A defining characteristic of this new era of compliance is the continuous process of refinement. Both the AML/CFT and BO Acts, along with their associated regulations, have undergone frequent amendments since their enactment.8 This pattern of ongoing updates, often in response to follow-up evaluations, demonstrates that the framework is not static.11 This dynamism has a profound implication for technical systems: any compliance software or tool designed for the Seychelles market must be architected for flexibility and configurability. Hard-coding rules, thresholds, or data fields is an untenable strategy, as the legal requirements are likely to continue evolving.
+
+
+B. The Tripartite Supervisory Structure: FIU, FSA, and CBS
+
+
+Supervision of the AML/CFT framework is distributed across three key authorities, each with a distinct purview:
+* Financial Intelligence Unit (FIU): The FIU is the central national agency established under the AML/CFT Act, 2020.1 It is responsible for receiving, analyzing, and disseminating financial intelligence related to suspected proceeds of crime and terrorist financing.13 Crucially, it operates the national Beneficial Ownership Database and the goAML platform for receiving Suspicious Transaction Reports (STRs).2
+* Financial Services Authority (FSA): The FSA is the regulator for non-banking financial institutions. Its supervisory scope includes international corporate service providers, securities dealers, insurance companies, and, under the new legislation, Virtual Asset Service Providers (VASPs).6
+* Central Bank of Seychelles (CBS): The CBS is responsible for the regulation and AML/CFT supervision of all banking institutions operating in Seychelles.3
+These bodies work in close collaboration, often issuing joint guidelines and circulars to ensure a consistent application of rules across all sectors of the economy.10
+
+
+C. Obligations and Scope of Reporting Entities (REs)
+
+
+The AML/CFT Act, 2020, imposes a range of obligations on "Reporting Entities" (REs), which are defined as any person or entity listed in the Act's First Schedule.1 This is a broad definition that encompasses not only traditional financial institutions but also a wide array of Designated Non-Financial Businesses and Professions (DNFBPs). Sectors under the FIU's purview include banks, real estate agents, accountants and auditors, dealers in precious stones and metals, and the newly regulated VASP sector.5
+Core obligations for all REs include conducting business-wide ML/TF risk assessments, implementing comprehensive internal AML/CFT policies and procedures, performing customer due diligence (CDD), maintaining records for a specified period, and reporting suspicious transactions to the FIU.6
+A key operational requirement is the mandatory appointment of a Compliance Officer (CO) and an Alternate Compliance Officer (ACO). These individuals are personally responsible for ensuring their entity's compliance and for the submission of all requisite reports to the FIU.1 Application forms for these roles are available from the FIU.18
+________________
+
+
+Part II: Beneficial Ownership (BO) Database Reporting Requirements
+
+
+The BO Act, 2020, and its subsequent amendments and regulations have established a comprehensive regime for the identification and reporting of beneficial ownership information. The goal is to create transparency and prevent the misuse of legal persons and arrangements for illicit purposes.2
+
+
+A. Defining the Beneficial Owner and Applicable Entities
+
+
+The legal framework provides a multi-layered definition of a "beneficial owner" (BO). It is fundamentally a natural person who ultimately owns or controls a customer or legal entity, or the natural person on whose behalf a transaction is being conducted.20 The primary quantitative test for identifying a BO is the ownership or control, directly or indirectly, of
+10% or more of the shares or voting rights of a legal person.20
+However, the definition also includes qualitative tests, such as exercising control through other means (e.g., the ability to appoint or remove board members) or, in cases where no natural person can be identified through ownership or control, the natural person holding the position of a senior managing official.20
+The obligation to identify BOs and maintain a Register of Beneficial Owners (RBO) applies to a wide range of "Legal Persons" and "Legal Arrangements" established in Seychelles. This includes companies incorporated under the Companies Act, International Business Companies (IBCs), protected cell companies, partnerships, foundations, and resident trustees of international trusts.20 The Act provides an exemption for publicly listed companies.20
+A significant nuance was introduced by the Beneficial Ownership (Amendment) Act, 2022, which created the concept of a "Registrable Legal Person" (RLP). This allows a legal person, such as a Seychelles-licensed registered agent or a listed company, to be entered into the RBO in its own right, without the need to trace ownership further up the chain in specific circumstances.21 This is a critical detail for correctly mapping complex ownership structures.
+
+
+B. The Centralised BO Database: Access and Administration
+
+
+The FIU maintains a secure, centralized Beneficial Ownership Database. For non-domestic entities, the specific access portal is located at: https://www.fiu.sc:4443/BO_Live/Home.22
+Key features of the database administration are:
+* Restricted Access: Access to populate the database is strictly limited to the Resident Agents of the respective legal persons and legal arrangements.22 The end-user of any compliance tool generating BO data must be an authorized Resident Agent.
+* Confidentiality: The database is not public. Access to the information held within is restricted to authorized domestic governmental bodies for the purpose of law enforcement and supervision.2
+* Registration: Before any data can be submitted, the Resident Agent firm must complete an organization registration process on the portal. Upon successful registration, login credentials are provided.22
+
+
+C. Data Point Specification for Beneficial Ownership Reporting
+
+
+The BO Act and its regulations mandate the collection of specific data points for every beneficial owner, nominee, and nominator. This information must first be recorded in the entity's internal Register of Beneficial Owners and then submitted to the FIU's database. The required information is detailed below.
+Table 1: Required Data Points for the Seychelles Beneficial Ownership Database
+
+
+Data Field
+	Required For
+	Description & Nuances
+	Legal Reference
+	Suggested Data Type
+	Source ID(s)
+	Full Name
+	BO, Nominee, Nominator
+	The full legal name of the natural person.
+	BO Act, S.8
+	String
+	20
+	Residential Address
+	BO, Nominee, Nominator
+	The primary residential address of the individual.
+	BO Act, S.8
+	String
+	20
+	Service Address
+	BO, Nominee, Nominator
+	An address for service of notices.
+	BO Act, S.8
+	String
+	20
+	Date of Birth
+	BO, Nominee, Nominator
+	The individual's full date of birth.
+	BO Act, S.8
+	Date
+	20
+	Nationality
+	BO, Nominee, Nominator
+	The country or countries of nationality.
+	BO Act, S.8
+	Enumeration (Country Code)
+	20
+	National Identification Number
+	BO
+	National ID number or equivalent (e.g., from a passport). Required by the 2022 amendment.
+	BO Amendment Act, 2022
+	String
+	21
+	Tax Identification Number
+	BO
+	Tax Identification Number (TIN) or equivalent. Required by the 2022 amendment.
+	BO Amendment Act, 2022
+	String
+	21
+	Date Became a BO
+	BO
+	The date on which the person met the criteria to be a beneficial owner.
+	BO Act, S.8
+	Date
+	20
+	Date Ceased to be a BO
+	BO
+	The date the person no longer meets the BO criteria.
+	BO XML Schema
+	Date
+	24
+	Particulars of Interest
+	Nominee
+	Details of the interest held by the nominee on behalf of the nominator.
+	BO Act, S.8
+	String
+	20
+	
+
+D. Technical Submission Protocol: Analysis of the BO XML Schema
+
+
+While manual data entry via the web portal is possible, the FIU has established a clear path toward automated, data-driven supervision by providing a detailed technical specification for batch uploads. The definitive guide for this process is the "Guidelines on Standard XML Reporting for Beneficial Ownership Database" (BO_XML_Standards.pdf).24 This document allows Resident Agents to construct compliant XML files for the bulk population of BO information into the database.24
+Analysis of this schema reveals a critical architectural decision: the FIU has customized a standard UNODC goAML system to serve as its BO database. This is evident in the repurposing of standard goAML nodes for the BO context. For a developer, this means that generic goAML documentation is insufficient; adherence to the Seychelles-specific BO_XML_Standards.pdf is paramount.
+Key XML nodes and their repurposed meanings include:
+* <report>: The root element containing metadata about the submission. This includes the rentity_id (the unique ID of the submitting Resident Agent), submission_date, and a report_code which must be set to "BORP" (Beneficial Ownership Registrable Particulars).24
+* <reporting_person>: Contains the details of the individual at the Resident Agent firm who is submitting the report.24
+* <activity> -> <report_party> -> <account>: This nested structure holds the information for the legal entity being reported. The <account> node is repurposed, with the <account_name> field used for the Entity's Name and the <Account> field used for its Incorporation/Registration Number.24
+* <signatory> -> <t_person>: This structure is used to hold the full details of an individual Beneficial Owner, as specified in Table 1.24
+* <t_entity>: This node is used to report the details of a legal person, particularly when it qualifies as a Registrable Legal Person (RLP).24
+The schema enforces strict data types, such as the DateTime format YYYY-MM-DDTHH:MM:SS, and requires the use of specific enumeration codes for fields like address type (e.g., PAT01 for Residential) and country (using ISO 3166-1 alpha-2 codes).24 The provision of this highly structured schema signals a clear strategic intent by the FIU to move towards automated supervision, enabling large-scale data ingestion and analysis.
+________________
+
+
+Part III: Suspicious Transaction Report (STR) Submission Protocol
+
+
+The obligation to report suspicious transactions is a cornerstone of any effective AML/CFT regime. In Seychelles, this process is governed by the AML/CFT Act, 2020, and managed through the FIU's goAML platform.
+
+
+A. The Legal Basis and Triggers for STR Filing
+
+
+Section 48 of the AML/CFT Act, 2020, mandates that a Reporting Entity must file an STR with the FIU if it "has reasonable grounds to suspect" that any service or transaction may be related to criminal conduct, an offence of money laundering, or terrorist financing.1
+It is critical to distinguish this suspicion-based obligation from threshold-based reporting. Reports like the Cash Transaction Threshold Report (CTTR) and Wire Transfer Threshold Report (WTTR) are mandatory filings for transactions exceeding a certain monetary value, irrespective of suspicion.1 An STR, conversely, must be filed whenever suspicion arises,
+regardless of the transaction amount.1
+Once suspicion is formed, the report must be submitted promptly.26 The FIU provides extensive guidance, including lists of general and industry-specific "red flag" indicators, to help REs identify potentially suspicious activity.27 These can include transactions that are unusually complex, have no apparent economic purpose, or are inconsistent with the customer's known profile.6
+
+
+B. The goAML Reporting Platform: Registration and Operational Workflow
+
+
+The official platform for submitting STRs in Seychelles is goAML, a standardized software solution developed by the United Nations Office on Drugs and Crime (UNODC) and deployed globally.14
+* Platform Access: The live portal is goaml.fiu.sc/goAML_Live/. Access is restricted to authorized users from Reporting Entities, supervisory authorities, and law enforcement agencies.14
+* Registration: The registration is a two-stage process where an individual user (typically the CO or ACO) first creates an account and then registers their organization. This requires the submission of supporting documents, such as the entity's license and a letter authorizing the compliance officer.30
+* Operational Environments: The FIU maintains separate Live and Test (goaml.fiu.sc/goAML_Test/) environments. The test system allows REs to validate their reporting formats, particularly for XML submissions, without submitting actual data to the FIU.15
+* Secure Communication: The goAML portal also functions as a secure messaging system, enabling the FIU to issue Requests for Information (RFIs) and provide feedback to REs directly within the platform.15
+
+
+C. STR Data Fields and Format Specification
+
+
+While a single document detailing every field on the Seychelles STR form is not available, a comprehensive specification can be constructed by synthesizing FIU guidelines, the structure of goAML forms in other jurisdictions, and the standard goAML XML schema. The quality of the data provided is paramount; low-quality reports will be rejected by the FIU and require resubmission.15
+Table 2: Composite Data Fields for a Seychelles STR on goAML
+
+
+Section
+	Field Name
+	Description & Content Guidance
+	Mandatory/Optional
+	Source/Inference
+	Report Details
+	Reporting Entity ID
+	Unique ID of the RE, auto-populated.
+	Mandatory
+	34
+	
+
+	Internal Reference No.
+	The RE's unique, sequential reference number for the STR.
+	Mandatory
+	35
+	
+
+	Submission Date
+	Date of submission, auto-generated.
+	Mandatory
+	34
+	
+
+	Action Taken by RE
+	Actions taken post-identification of suspicion (e.g., "Account Monitored," "Relationship Terminated").
+	Mandatory
+	34
+	Subject Details
+	Subject Type
+	Person or Entity.
+	Mandatory
+	36
+	
+
+	Name / Entity Name
+	Full legal name of the subject whose actions are suspicious.
+	Mandatory
+	35
+	
+
+	Address, City, Country
+	Full address details.
+	Mandatory
+	35
+	
+
+	Date of Birth / Incorporation
+	
+
+	Mandatory
+	35
+	
+
+	ID Type & Number
+	E.g., Passport, National ID Card, with number.
+	Mandatory
+	35
+	
+
+	Occupation / Line of Business
+	
+
+	Mandatory
+	35
+	Third-Party Details
+	(All fields as above)
+	Details of the counterparty to the transaction.
+	Mandatory
+	36
+	Transaction Details
+	Transaction Date
+	Date the suspicious transaction was initiated/executed.
+	Mandatory
+	34
+	
+
+	Amount & Currency
+	Full amount and currency code (e.g., SCR, USD).
+	Mandatory
+	36
+	
+
+	Financial Instrument
+	E.g., Wire Transfer, Cash Deposit, Cheque.
+	Mandatory
+	36
+	
+
+	Account(s) Involved
+	Account numbers for both subject and third party.
+	Mandatory
+	35
+	
+
+	Purpose of Transaction
+	The stated purpose of the transaction.
+	Mandatory
+	34
+	Narrative
+	Reason for Suspicion
+	A clear, detailed, chronological narrative explaining why the transaction is suspicious. This is the most critical part of the report.
+	Mandatory
+	27
+	Attachments
+	Supporting Documents
+	Ability to attach copies of IDs, invoices, transaction records, etc.
+	Optional but Encouraged
+	28
+	The most crucial element of a high-quality STR is the Reason for Suspicion narrative. While the structured data fields explain what happened, the narrative must explain to the FIU analyst why it is suspicious. It should provide the RE's context, judgment, and a chronological account of the events and red flags that led to the suspicion being formed.27 A compliance tool should not attempt to fully automate this component; rather, it should facilitate its creation by auto-populating all known data and providing a robust interface for the compliance officer to craft a comprehensive narrative.
+
+
+D. Technical Submission Format: goAML Web Forms and XML Schema
+
+
+REs can submit STRs using two primary methods:
+1. Manual Web Forms: This involves logging into the goAML portal and manually entering the data into a series of web-based forms and tabs.38
+2. XML Upload: The FIU is progressively enabling bulk XML uploads, which allows REs to submit multiple reports in a single file.14 This requires the creation of an XML file that strictly adheres to the standard goAML schema. The schema is highly detailed, with specific nodes for the report (
+<report>), transactions (<transaction>), involved parties (<t_person>, <t_entity>), accounts, and the reasons for reporting.39
+________________
+
+
+Part IV: Special Considerations for Virtual Asset Service Providers (VASPs)
+
+
+The emergence of virtual assets has prompted the FIU to establish a specific regulatory and reporting framework for this new and dynamic sector.
+
+
+A. VASP Regulatory Status and Unique Obligations
+
+
+The Virtual Asset Service Providers (VASP) Act, 2024, creates a dedicated licensing regime for VASPs in Seychelles.5 A pivotal clause in the Act states that as soon as it comes into force, all licensed VASPs automatically become "Reporting Entities" under the AML/CFT Act, 2020, and are subject to all its obligations.5 The FIU is taking a proactive role in issuing guidance to help this new sector understand and implement its compliance duties.5
+
+
+B. Reporting Requirements for Virtual Asset Transactions (VASTR/VASAR)
+
+
+Recognizing the unique nature of virtual asset transactions, the FIU has developed specialized reporting requirements:
+   * Dedicated Reports: VASPs are required to file Virtual Asset Suspicious Transaction Reports (VASTR) and Virtual Asset Suspicious Activity Reports (VASAR).40
+   * Advanced Submission Methods: While VASPs use the same goAML platform, the FIU has been more technically forward-looking with this sector. From the outset, the FIU provides documentation for submitting reports not only via XML upload but also directly through goAML's Application Programming Interface (API).40
+   * VASP Resource Package: The FIU provides a comprehensive, all-in-one "XML Resource Care Package" specifically for VASPs. This downloadable package includes all necessary resources for both XML and API submissions, including schemas, documentation, and examples.40
+The provision of API access for VASPs is a significant development. It acknowledges the high-volume, digital-native environment in which VASPs operate and signals the FIU's expectation for automated, system-to-system reporting. For any compliance solution targeting the VASP sector, API integration should be considered the primary implementation method.
+________________
+
+
+Part V: Synthesis and Recommendations for Implementation
+
+
+Based on the detailed analysis of Seychelles' legal framework and technical reporting requirements, the following checklists and recommendations are provided to guide the development of compliance tools and the revision of internal procedures.
+
+
+A. Actionable Compliance Checklists
+
+
+Beneficial Ownership (BO) Compliance Checklist:
+   1. Identify: For each legal person/arrangement, identify all natural persons who meet the 10% ownership/control threshold or other control criteria.
+   2. Verify: Collect and verify identity documents for all identified BOs.
+   3. Register: Create and maintain an internal Register of Beneficial Owners (RBO) containing all data points specified in Table 1.
+   4. Access Portal: Ensure the Resident Agent is registered on the correct BO portal: https://www.fiu.sc:4443/BO_Live/Home.
+   5. Prepare Data:
+   * Manual: Prepare all required data for manual entry into the web form.
+   * Batch: Prepare data for generation of an XML file that strictly conforms to the BO_XML_Standards.pdf, paying close attention to repurposed nodes and required enumerations.
+   6. Submit: Submit the information to the FIU database.
+   7. Update: Implement a process for periodically reviewing and updating BO information to ensure it remains accurate.
+Suspicious Transaction Report (STR) Filing Checklist:
+   1. Detect: Identify a suspicious transaction or activity through transaction monitoring or other means, referencing FIU red flag indicators.
+   2. Investigate: Conduct a preliminary internal review to gather relevant facts and confirm that "reasonable grounds for suspicion" exist.
+   3. Collect Data: Gather all required structured data points as outlined in Table 2 for the subject, transaction, and any third parties.
+   4. Draft Narrative: Write a clear, comprehensive, and chronological "Reason for Suspicion" narrative. Explain what was unusual and why it raised suspicion.
+   5. Prepare Report:
+   * Manual: Log in to the goAML live portal and complete all required fields in the web form.
+   * XML: Use a compliance tool to generate a goAML-compliant XML file.
+   6. Attach Documents: Attach copies of all relevant supporting documentation.
+   7. Submit: Submit the completed report to the FIU promptly. Do not "tip off" the customer.
+   8. Record: Maintain a record of the STR and all supporting analysis for future reference and supervisory review.
+
+
+B. Technical Recommendations for Code Assistant Development
+
+
+   * Dual-System Architecture: The significant differences in reporting portals, access rights, and XML schemas between BO reporting and STR reporting necessitate a modular design. The system should have two distinct components: one for BO reporting (targeting Resident Agents and using the BO-specific XML schema) and one for STR reporting (targeting all REs and using the standard goAML schema).
+   * Configuration over Hard-Coding: The regulatory environment in Seychelles is demonstrably dynamic. To ensure longevity and reduce maintenance overhead, the system must be highly configurable. Thresholds, data fields, enumeration lists (e.g., country codes, report codes), and validation rules should be managed through a settings interface, not hard-coded into the application.
+   * Narrative Support Tool: Full automation of STR filing is ill-advised due to the critical importance of the narrative. The tool should function as a "Compliance Co-Pilot." It should automate the population of all structured data fields and then provide the compliance officer with a rich text editor for the narrative, potentially enhanced with features like prompts based on selected red flags or direct links to relevant FIU typology reports.
+   * API-First for VASPs: For any module developed for the VASP sector, direct API integration with goAML should be the primary goal. This aligns with the FIU's forward-looking approach to this sector and the high-volume nature of virtual asset transactions.
+
+
+C. Strategic Recommendations for Revising Procedural Amendments
+
+
+   * Policy Alignment: Internal AML/CFT policies must be reviewed and updated to explicitly reflect the definitions, thresholds (e.g., 10% for BO), and roles (CO/ACO) as defined in the AML/CFT Act, 2020, and the BO Act, 2020.
+   * Technology Integration: Internal procedures should mandate the use of a standardized technological solution (such as the proposed code assistant) for all BO and STR reporting. This will ensure consistency, reduce human error, and improve the quality of submissions to the FIU.
+   * Training and Awareness: Develop and implement regular training programs for all relevant staff. This training should be based on the FIU's official guidelines and typology reports, with a particular focus on helping staff understand the practical difference between mandatory threshold reporting (CTTR/WTTR) and judgment-based suspicious transaction reporting (STR).
+   * Record-Keeping: Procedures must ensure that all documentation used to verify beneficial owners and all analysis performed to support an STR decision is securely retained and linked to the specific report submission. This documentation is essential for demonstrating compliance during supervisory inspections by the FIU, FSA, or CBS.
+Works cited
+   1. SEYCHELLES FINANCIAL INTELLIGENCE UNIT, accessed August 7, 2025, https://www.cbs.sc/Downloads/publications/aml/Guidelines%20for%20Submission%20of%20Cash%20Transaction%20Threshold%20Reports.pdf
+   2. Seychelles Beneficial ownership database - OMC Group, accessed August 7, 2025, https://www.omcgroup.com/industry-news/seychelles-beneficial-ownership-database/
+   3. AML/CFT - Central Bank Of Seychelles, accessed August 7, 2025, https://www.cbs.sc/AMLCFT/AMLCFT.html
+   4. FATF - Seychelles Financial Intelligence Unit, accessed August 7, 2025, https://seychellesfiu.sc/fatf/
+   5. Seychelles Financial Intelligence Unit – Leading the Fight Against Money Laundering and Terrorist Financing, accessed August 7, 2025, https://seychellesfiu.sc/
+   6. AML/CTF compliance in Seychelles - Arctic Intelligence, accessed August 7, 2025, https://arctic-intelligence.com/countries/compliance-seychelles
+   7. Seychelles - Global AML Guide - Eversheds Sutherland, accessed August 7, 2025, https://ezine.eversheds-sutherland.com/global-aml-guide/seychelles
+   8. S.I. 115 of 2024 - Beneficial Ownership (Amendment) Regulations, 2024, accessed August 7, 2025, https://www.nationalassembly.sc/legislation/statutory-instrument-sis/si-115-2024-beneficial-ownership-amendment-regulations-2024
+   9. Beneficial Ownership - Financial Services Authority Seychelles, accessed August 7, 2025, https://fsaseychelles.sc/aml-cft/beneficial-ownership
+   10. AML-CFT - Financial Services Authority Seychelles, accessed August 7, 2025, https://fsaseychelles.sc/aml-cft/amlcft
+   11. Anti-money laundering and counter-terrorist financing ... - FATF, accessed August 7, 2025, https://www.fatf-gafi.org/content/dam/fatf-gafi/fsrb-fur/Seychelles-ESAAMLG-Follow-Up-Report-2023.pdf.coredownload.inline.pdf
+   12. Seychelles' progress in strengthening measures to tackle money laundering and terrorist financing - FATF, accessed August 7, 2025, https://www.fatf-gafi.org/en/publications/Mutualevaluations/fur-seychelles-2023.html
+   13. 2 Establishing an FIU in: Financial Intelligence Units - IMF eLibrary, accessed August 7, 2025, https://www.elibrary.imf.org/display/book/9781589063495/ch02.xml
+   14. goAML - Seychelles FIU Reporting Platform, accessed August 7, 2025, https://goaml.fiu.sc/goAML_Live/
+   15. REPORT A SUSPICIOUS TRANSACTION OR ACTIVITY - Seychelles Financial Intelligence Unit, accessed August 7, 2025, https://seychellesfiu.sc/report-a-suspicious-transaction-or-activity/
+   16. Regulatory Framework - Central Bank Of Seychelles, accessed August 7, 2025, https://www.cbs.sc/AMLCFT/RegulatoryFramework.html
+   17. Guidelines for Submission of Wire Transfer Threshold Reports - Central Bank Of Seychelles, accessed August 7, 2025, https://www.cbs.sc/Downloads/publications/aml/Guidelines%20for%20Submission%20of%20Wire%20Transfer%20Threshold%20Reports.pdf
+   18. FORMS - Seychelles Financial Intelligence Unit, accessed August 7, 2025, https://seychellesfiu.sc/forms/
+   19. Beneficial Ownership Guidelines - Seychelles Financial Intelligence Unit, accessed August 7, 2025, https://seychellesfiu.sc/wp-content/uploads/2024/07/Beneficial-Ownership-Guidelines.pdf
+   20. BENEFICIAL OWNERSHIP – Seychelles Financial Intelligence Unit, accessed August 7, 2025, https://seychellesfiu.sc/beneficial-ownership/
+   21. Amendments to the Seychelles Beneficial Ownership regime, accessed August 7, 2025, https://www.marburys.com/amendments-to-the-seychelles-beneficial-ownership-regime
+   22. Non Domestic - Seychelles Beneficial Ownership Database, accessed August 7, 2025, https://www.fiu.sc:4443/BO_Live/Home
+   23. Domestic - Seychelles Beneficial Ownership Database, accessed August 7, 2025, https://www.fiu.sc:4443/bo_domestic/Home
+   24. Guidelines on Standard XML Reporting for Beneficial Ownership ..., accessed August 7, 2025, https://seychellesfiu.sc/wp-content/uploads/2023/06/BO_XML_Standards.pdf
+   25. Submit an STR - Financial Services Authority Seychelles, accessed August 7, 2025, https://fsaseychelles.sc/vasp/submit-an-str
+   26. The Financial Intelligence Unit (FIU) issues Guidelines for Suspicious Transaction Reporting - - FiveComply, accessed August 7, 2025, https://fivecomply.com/the-financial-intelligence-unit-fiu-issues-guidelines-for-suspicious-transaction-reporting/
+   27. Guidelines for Suspicious Transaction Reporting - Central Bank Of ..., accessed August 7, 2025, https://www.cbs.sc/Downloads/publications/aml/Guidelines/Guidelines_for_suspicious_transaction_reporting.pdf
+   28. Reports - the United Nations, accessed August 7, 2025, https://unite.un.org/goaml/content/reports
+   29. goAML (Anti-Money-Laundering System) - Unodc, accessed August 7, 2025, https://www.unodc.org/unodc/en/global-it-products/goaml.html
+   30. STR/SAR Filing on goAML Portal: Common lapses and best practices - AML UAE, accessed August 7, 2025, https://amluae.com/str-sar-filing-on-goaml-portal/
+   31. Financial Intelligence Unit of Iceland, accessed August 7, 2025, https://assets.ctfassets.net/8k0h54kbe6bj/10DFX73OplpYRambsFR10l/71d1b1bd73c69ec243ce7c583149c8f7/Goaml-Web-reporting-user-guide-v1.07.pdf
+   32. GoAML Home, accessed August 7, 2025, https://goaml.fiu.sc/goAML_Test/Home
+   33. goAML Web Portal End-User Guide | FIAU, accessed August 7, 2025, https://fiaumalta.org/app/uploads/2025/06/goAML-Web-Portal-End-User-Guide_V2.1.pdf
+   34. 3.4. How to Submit an STR and Other Report Types | CBUAE Rulebook, accessed August 7, 2025, https://rulebook.centralbank.ae/en/rulebook/34-how-submit-str-and-other-report-types
+   35. STR/SAR Checklist - Financial Intelligence Unit – Trinidad and Tobago, accessed August 7, 2025, https://fiu.gov.tt/reporting/str-sar-checklist/
+   36. STR - Financial Intelligent Unit, accessed August 7, 2025, https://fiu.gov.sl/wp-content/uploads/2022/10/STR-REPORTING-TEMPLATE.xls
+   37. goAML Schema 5.0.2 - Financial Reporting Centre - Kenya, accessed August 7, 2025, http://goamltest.frc.go.ke/goAML_Test/Images/customization/StandardXMLReportingInstructionsAndSpecifications.pdf
+   38. Application Manual Reporting and Form Configuration, accessed August 7, 2025, https://www.nfiu.gov.ng/images/Downloads/downloads/webguide.pdf
+   39. goAML XML Reporting Schema Description, accessed August 7, 2025, https://aml.iq/wp-content/uploads/2023/03/goAMLSchema-v5.0.2.pdf
+   40. VA REPORTING – Seychelles Financial Intelligence Unit, accessed August 7, 2025, https://seychellesfiu.sc/va-reporting/

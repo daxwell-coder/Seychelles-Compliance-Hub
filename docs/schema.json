@@ -1,0 +1,141 @@
+{
+  "firestore": {
+    "description": "Schema for real-time operational data, designed for low-latency access by the platform's microservices.",
+    "collections": [
+      {
+        "name": "clients",
+        "description": "Stores core information about client entities (e.g., IBCs).",
+        "subcollections": [
+          {
+            "name": "beneficial_owners",
+            "description": "Stores information about the beneficial owners of a client entity, as per the BO Act.",
+            "fields": [
+              {
+                "name": "fullName",
+                "type": "String",
+                "required": true,
+                "validation": "non-empty",
+                "description": "The full legal name of the beneficial owner."
+              },
+              {
+                "name": "residentialAddress",
+                "type": "String",
+                "required": true,
+                "validation": "non-empty",
+                "description": "The primary residential address of the beneficial owner."
+              },
+              {
+                "name": "serviceAddress",
+                "type": "String",
+                "required": true,
+                "validation": "non-empty",
+                "description": "The address for service of legal documents."
+              },
+              {
+                "name": "dateOfBirth",
+                "type": "Timestamp",
+                "required": true,
+                "validation": "is-past-date",
+                "description": "The beneficial owner's date of birth."
+              },
+              {
+                "name": "nationality",
+                "type": "String",
+                "required": true,
+                "validation": "iso-3166-1-alpha-2",
+                "description": "The beneficial owner's nationality as an ISO 3166-1 alpha-2 code."
+              },
+              {
+                "name": "nationalIdNumber",
+                "type": "String",
+                "required": true,
+                "validation": "non-empty",
+                "description": "The national identification number from the BO's identity document."
+              },
+              {
+                "name": "taxIdNumber",
+                "type": "String",
+                "required": true,
+                "validation": "non-empty",
+                "description": "The tax identification number (TIN) for the beneficial owner."
+              },
+              {
+                "name": "dateBecameBo",
+                "type": "Timestamp",
+                "required": true,
+                "validation": "is-not-future-date",
+                "description": "The date on which the individual became a beneficial owner."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "str_cases",
+        "description": "Stores information related to Suspicious Transaction Reports (STRs) being managed by a Compliance Officer.",
+        "fields": [
+          {
+            "name": "clientId",
+            "type": "String",
+            "required": true,
+            "validation": "non-empty",
+            "description": "A reference to the ID of the client entity involved in the STR."
+          },
+          {
+            "name": "caseStatus",
+            "type": "String",
+            "required": true,
+            "validation": "enum:DRAFT,PENDING_REVIEW,SUBMITTED,CLOSED",
+            "description": "The current workflow status of the STR case."
+          },
+          {
+            "name": "suspicionNarrative",
+            "type": "String",
+            "required": true,
+            "validation": "min-length:500",
+            "description": "The detailed narrative explaining the grounds for suspicion, as drafted by the Compliance Officer."
+          }
+        ]
+      }
+    ]
+  },
+  "bigquery": {
+    "description": "Schema for the analytical data warehouse, designed for reporting, monitoring, and long-term immutable storage.",
+    "datasets": [
+      {
+        "name": "compliance_warehouse",
+        "tables": [
+          {
+            "name": "beneficial_owners_history",
+            "description": "An immutable, append-only log of all beneficial owner data ever recorded, providing a complete audit trail.",
+            "schema": [
+              { "name": "client_id", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "bo_id", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "full_name", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "residential_address", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "service_address", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "date_of_birth", "type": "DATE", "mode": "REQUIRED" },
+              { "name": "nationality", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "national_id_number", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "tax_id_number", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "date_became_bo", "type": "DATE", "mode": "REQUIRED" },
+              { "name": "snapshot_timestamp", "type": "TIMESTAMP", "mode": "REQUIRED", "description": "The timestamp when this record was written, ensuring immutability." }
+            ]
+          },
+          {
+            "name": "str_cases_history",
+            "description": "An immutable, append-only log of all STR case data.",
+            "schema": [
+              { "name": "case_id", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "client_id", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "suspicion_narrative", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "case_status", "type": "STRING", "mode": "REQUIRED" },
+              { "name": "submission_timestamp", "type": "TIMESTAMP", "mode": "NULLABLE", "description": "The timestamp when the case was officially submitted to the FIU." },
+              { "name": "snapshot_timestamp", "type": "TIMESTAMP", "mode": "REQUIRED", "description": "The timestamp when this record was written, ensuring immutability." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

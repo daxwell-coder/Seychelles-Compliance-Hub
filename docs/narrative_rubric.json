@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "dimensions": [
+    {"id": "clarity", "description": "Clear, unambiguous description of suspicion."},
+    {"id": "chronology", "description": "Events ordered logically with timestamps."},
+    {"id": "risk_flags", "description": "Relevant red flags explicitly referenced."},
+    {"id": "data_linkage", "description": "Links transactions, entities, and identifiers."},
+    {"id": "regulatory_citation", "description": "Cites relevant legal sections or guidance."},
+    {"id": "conciseness", "description": "No unnecessary filler; focused narrative."}
+  ],
+  "scoring_scale": {"min": 0, "max": 5},
+  "thresholds": {"good": 4, "excellent": 4.5}
+}

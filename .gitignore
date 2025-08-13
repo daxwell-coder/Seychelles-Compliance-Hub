@@ -1,4 +1,3 @@
-@'
 # Dependencies
 /node_modules
 
@@ -44,4 +43,7 @@ yarn-error.log
 Thumbs.db
 .vscode/
 .idea/
-'@ | Set-Content -Path "c:\schv1\.gitignore" -Encoding utf8
+
+# Project-specific ignores
+schv1.zip
+seychelles-compliance-portal*.tar.gz
