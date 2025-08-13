@@ -1,0 +1,22 @@
+{
+  "id": "BO-AML-2025-01",
+  "version": "1.0.0",
+  "obligations": [
+    {
+      "id": "BO-001",
+      "title": "Beneficial Ownership Disclosure",
+      "description": "Entities must disclose beneficial ownership as per FSA guidelines.",
+      "source_hash": "abc123",
+      "jurisdiction": "Seychelles"
+    },
+    {
+      "id": "AML-001",
+      "title": "AML Transaction Monitoring",
+      "description": "Entities must monitor transactions for AML compliance.",
+      "source_hash": "def456",
+      "jurisdiction": "Seychelles"
+    }
+  ],
+  "source_hash": "packhash789",
+  "license": "MIT"
+}
